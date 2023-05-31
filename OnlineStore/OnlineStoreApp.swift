@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct OnlineStoreApp: App {
-    let persistenceController = PersistenceController.shared
+    @StateObject private var placeholder = PlaceholderViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(placeholder)
         }
     }
 }
