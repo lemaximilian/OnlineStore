@@ -12,10 +12,8 @@ struct Home: View {
     
     var body: some View {
         VStack {
-            
             // Welcome message
             HStack {
-                
                 Text("Welcome user!")
                     .font(.largeTitle)
                     .bold()
@@ -24,22 +22,34 @@ struct Home: View {
             }
             .padding()
             
-            // Top products
-            Text("Top Products")
-                .font(.title2)
-            
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
-                ForEach(placeholderVM.placeholder) { placeholder in
-                    NavigationLink(destination: Home()) {
-                        Product(title: placeholder.title)
+            ScrollView(showsIndicators: false) {
+                // Top products
+                Text("Top Products")
+                    .font(.title2)
+                
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                    ForEach(placeholderVM.placeholder) { placeholder in
+                        NavigationLink(destination: Home()) {
+                            Product(title: placeholder.title)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
+                
+                // Categories
+                Text("Categories")
+                    .font(.title2)
+                
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                    ForEach(placeholderVM.placeholder) { placeholder in
+                        NavigationLink(destination: Home()) {
+                            ProductRound(title: placeholder.title)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                
             }
-            
-            //
-            Spacer()
-            
         }
         .padding()
     }
