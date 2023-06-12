@@ -12,12 +12,12 @@ class PlaceholderViewModel: ObservableObject {
     
     init() {
         self.placeholder = [
-            Placeholder(id: UUID(), title: "iPhone 14"),
-            Placeholder(id: UUID(), title: "Nintendo Switch"),
-            Placeholder(id: UUID(), title: "Samsung Galaxy S23"),
-            Placeholder(id: UUID(), title: "Bose QuietComfort 45"),
-            Placeholder(id: UUID(), title: "Dyson Staubsauger"),
-            Placeholder(id: UUID(), title: "Bosch Waschmaschine")
+            Placeholder(id: UUID(), title: "Placeholder #1"),
+            Placeholder(id: UUID(), title: "Placeholder #2"),
+            Placeholder(id: UUID(), title: "Placeholder #3"),
+            Placeholder(id: UUID(), title: "Placeholder #4"),
+            Placeholder(id: UUID(), title: "Placeholder #5"),
+            Placeholder(id: UUID(), title: "Placeholder #6")
         ]
     }
     

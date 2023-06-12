@@ -11,7 +11,7 @@ struct Categories: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        ScrollView {
+        VStack {
             HStack {
                 Text("Categories")
                     .font(.largeTitle)
@@ -20,12 +20,14 @@ struct Categories: View {
             }
             .padding()
             
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                ForEach(placeholderVM.placeholder) { placeholder in
-                    NavigationLink(destination: Home()) {
-                        ProductRound(title: placeholder.title)
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                    ForEach(placeholderVM.placeholder) { placeholder in
+                        NavigationLink(destination: Home()) {
+                            ProductRound(title: placeholder.title)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
