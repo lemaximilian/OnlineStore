@@ -17,8 +17,14 @@ struct EditProduct: View {
                     Text(product.title)
                 }
             }
+            .onDelete(perform: { indexSet in
+                placeholderVM.placeholder.remove(atOffsets: indexSet)
+            })
         }
         .navigationTitle("Edit Product")
+        .toolbar {
+            EditButton()
+        }
     }
 }
 

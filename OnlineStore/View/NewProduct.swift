@@ -12,7 +12,7 @@ struct NewProduct: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @State private var title = ""
     @State private var description = ""
-    @State private var selectedCategory = ""
+    @State private var selectedCategory = Placeholder(id: UUID(), title: "")
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
     
@@ -36,12 +36,13 @@ struct NewProduct: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                Picker("Category", selection: $selectedCategory) {
-                    ForEach(placeholderVM.placeholder) { category in
+                Picker("Category", selection: $placeholderVM.placeholder.first ?? $selectedCategory) {
+                    ForEach(placeholderVM.placeholder, id: \.self) { category in
                         Text(category.title)
                     }
                 }
-                .pickerStyle(.wheel)
+                .pickerStyle(.navigationLink)
+                .padding()
                 
                 List {
                     Section("Highlights") {
@@ -50,7 +51,7 @@ struct NewProduct: View {
                         }
                     }
                 }
-                .listStyle(.insetGrouped)
+                .listStyle(.plain)
                 .frame(minHeight: 200)
                 
                 PhotosPicker(

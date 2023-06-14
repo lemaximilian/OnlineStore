@@ -1,35 +1,36 @@
 //
-//  Categories.swift
+//  CategoryPage.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 31.05.23.
+//  Created by Maximilian Le on 14.06.23.
 //
 
 import SwiftUI
 
-struct Categories: View {
+struct CategoryPage: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    ForEach(placeholderVM.placeholder) { placeholder in
-                        NavigationLink(destination: CategoryPage()) {
-                            ProductRound(title: placeholder.title)
+                    ForEach(placeholderVM.placeholder) { product in
+                        NavigationLink(destination: ProductPage()) {
+                            ProductRectangle(title: product.title)
                         }
                         .buttonStyle(.plain)
                     }
+                    
                 }
             }
-            .navigationTitle("Categories")
+            .navigationTitle("Category")
             .padding()
         }
     }
 }
 
-struct Categories_Previews: PreviewProvider {
+struct CategoryPage_Previews: PreviewProvider {
     static var previews: some View {
-        Categories().environmentObject(PlaceholderViewModel())
+        CategoryPage().environmentObject(PlaceholderViewModel())
     }
 }

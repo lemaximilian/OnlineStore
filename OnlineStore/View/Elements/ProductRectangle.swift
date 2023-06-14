@@ -1,5 +1,5 @@
 //
-//  Product.swift
+//  ProductRectangle.swift
 //  OnlineStore
 //
 //  Created by Maximilian Le on 31.05.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Product: View {
+struct ProductRectangle: View {
     var title: String
     
     var body: some View {

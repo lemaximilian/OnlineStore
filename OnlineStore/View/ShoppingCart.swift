@@ -11,28 +11,22 @@ struct ShoppingCart: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Shopping Cart")
-                    .font(.largeTitle)
-                    .bold()
-                Spacer()
-            }
-            .padding()
-            
-            HStack {
-                Text("\(placeholderVM.placeholder.count) Products")
-                Spacer()
-            }
-            .padding(.horizontal)
-            
+        NavigationView {
             ScrollView(showsIndicators: false) {
+                HStack {
+                    Text("\(placeholderVM.placeholder.count) Products")
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
                 ForEach(placeholderVM.placeholder) { placeholder in
                     ShoppingCartItem(title: placeholder.title)
+                    Divider()
                 }
             }
+            .navigationTitle("Shopping Cart")
+            .padding()
         }
-        .padding()
     }
 }
 

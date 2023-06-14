@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Placeholder: Identifiable {
+struct Placeholder: Identifiable, Hashable {
     let id: UUID
     var title: String
 }

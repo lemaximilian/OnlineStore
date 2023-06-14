@@ -11,7 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        TabController()
+        Registration()
     }
 }
     
