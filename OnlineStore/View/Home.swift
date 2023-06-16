@@ -20,7 +20,7 @@ struct Home: View {
                 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
                     ForEach(placeholderVM.placeholder) { placeholder in
-                        NavigationLink(destination: ProductPage()) {
+                        NavigationLink(destination: ProductPage(currentPlaceholder: placeholder)) {
                             ProductRectangle(title: placeholder.title)
                         }
                         .buttonStyle(.plain)

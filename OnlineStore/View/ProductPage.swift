@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ProductPage: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    @State private var selection = ""
-    private var text = exampleText
+    @State var selection = ""
+    @State var showAlert = false
+    var text = exampleText
+    var currentPlaceholder: Placeholder
     
     var body: some View {
         NavigationView {
@@ -136,13 +138,14 @@ struct ProductPage: View {
                 
                 
             }
-            .navigationTitle("Product")
+            .navigationTitle(currentPlaceholder.title)
             .padding()
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     HStack {
                         Button {
-                            // Add to shopping cart
+                            placeholderVM.addToShoppingCart(currentPlaceholder)
+                            showAlert = true
                         } label: {
                             HStack {
                                 Image(systemName: "cart")
@@ -151,6 +154,9 @@ struct ProductPage: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .padding(.top)
+                        .alert("Added to Shopping Cart", isPresented: $showAlert) {
+                                    Button("OK", role: .cancel) { }
+                        }
                         
                         Button {
                             // Set as favourite
@@ -166,8 +172,8 @@ struct ProductPage: View {
     }
 }
 
-struct ProductPage_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductPage().environmentObject(PlaceholderViewModel())
-    }
-}
+//struct ProductPage_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductPage().environmentObject(PlaceholderViewModel())
+//    }
+//}

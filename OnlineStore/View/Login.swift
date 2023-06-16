@@ -1,20 +1,17 @@
 //
-//  Registration.swift
+//  Login.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 30.05.23.
+//  Created by Maximilian Le on 15.06.23.
 //
 
 import SwiftUI
 
-struct Registration: View {
+struct Login: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    @State private var mail = ""
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var username = ""
-    @State private var birthdate = Date()
     @State private var password = ""
-    @State private var isSeller = false
-    
     
     var body: some View {
         NavigationStack {
@@ -23,15 +20,11 @@ struct Registration: View {
                 Spacer()
                 
                 // Title
-                Text("Registration")
+                Text("Login")
                     .font(.title)
                     .bold()
                 
                 // User Inputs
-                TextField("E-Mail Address", text: $mail)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
                 TextField("Username", text: $username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
@@ -40,16 +33,10 @@ struct Registration: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
-                    .padding()
-                
-                Toggle("Seller Account", isOn: $isSeller)
-                    .padding()
-                
                 // Button to Register
                 
-                NavigationLink(destination: TabController()) {
-                    Text("Register")
+                NavigationLink(destination: Management()) {
+                    Text("Login")
                 }
                 .buttonStyle(.borderedProminent)
                 .padding()
@@ -59,19 +46,20 @@ struct Registration: View {
                 // Button to Login
                 HStack {
                     Spacer()
-                    NavigationLink(destination: Login()) {
-                        Text("Login with an existing account")
+                    Button("No account? Register here!") {
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                     .padding()
                 }
             }
+            .navigationBarBackButtonHidden(true)
             .padding()
         }
     }
 }
 
-struct Registration_Previews: PreviewProvider {
+struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Registration().environmentObject(PlaceholderViewModel())
+        Login().environmentObject(PlaceholderViewModel())
     }
 }

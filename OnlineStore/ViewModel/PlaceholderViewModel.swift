@@ -9,6 +9,7 @@ import SwiftUI
 
 class PlaceholderViewModel: ObservableObject {
     @Published var placeholder: [Placeholder]
+    @Published var shoppingCart: [Placeholder] = []
     
     init() {
         self.placeholder = [
@@ -21,6 +22,9 @@ class PlaceholderViewModel: ObservableObject {
         ]
     }
     
+    func addToShoppingCart(_ item: Placeholder) {
+        shoppingCart.append(item)
+    }
 }
 
 
