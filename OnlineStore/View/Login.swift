@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Login: View {
+    @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @EnvironmentObject var appVM: AppViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @FetchRequest(sortDescriptors: []) private var users: FetchedResults<User>
+    
     @State private var username = ""
     @State private var password = ""
     
@@ -33,11 +38,26 @@ struct Login: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                // Button to Register
+                // Button to Login
                 
-                NavigationLink(destination: Management()) {
-                    Text("Login")
+//                NavigationLink(destination: Management()) {
+//                    Text("Login")
+//                }
+//                .buttonStyle(.borderedProminent)
+//                .padding()
+                
+                Button("Login") {
+                    if PersistenceController.shared.validateUser(username: username, password: password) {
+                        appVM.login()
+                    } else {
+                        appVM.alertShown = true
+                    }
                 }
+                .alert(Text("Missing inputs"), isPresented: $appVM.alertShown, actions: {
+                    Button("Confirm") { }
+                }, message: {
+                    Text("Please enter an username or password.")
+                })
                 .buttonStyle(.borderedProminent)
                 .padding()
                 
@@ -60,6 +80,8 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login().environmentObject(PlaceholderViewModel())
+        Login()
+            .environmentObject(PlaceholderViewModel())
+            .environmentObject(AppViewModel())
     }
 }

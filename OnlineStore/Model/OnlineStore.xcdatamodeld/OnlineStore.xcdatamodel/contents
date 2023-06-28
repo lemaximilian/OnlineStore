@@ -21,9 +21,21 @@
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="birthdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isSeller" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="mail" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
-        <attribute name="seller" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
+    <configuration name="Local" usedWithCloudKit="YES">
+        <memberEntity name="User"/>
+        <memberEntity name="Review"/>
+        <memberEntity name="Product"/>
+        <memberEntity name="Category"/>
+    </configuration>
+    <configuration name="Public" usedWithCloudKit="YES">
+        <memberEntity name="User"/>
+        <memberEntity name="Review"/>
+        <memberEntity name="Product"/>
+        <memberEntity name="Category"/>
+    </configuration>
 </model>
