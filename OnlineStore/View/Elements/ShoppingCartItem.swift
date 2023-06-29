@@ -16,6 +16,7 @@ struct ShoppingCartItem: View {
                 .fill()
                 .foregroundColor(.blue)
                 .aspectRatio(contentMode: .fit)
+                .shadow(radius: 5)
             
             VStack {
                 HStack {

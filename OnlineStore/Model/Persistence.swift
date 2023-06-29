@@ -11,6 +11,7 @@ import CloudKit
 
 class PersistenceController {
     static let shared = PersistenceController()
+    let database = CKContainer.default().publicCloudDatabase
 
     static var preview: PersistenceController = {
             let result = PersistenceController(inMemory: true)
@@ -84,9 +85,9 @@ class PersistenceController {
         birthdate: Date,
         isSeller: Bool,
         viewContext: NSManagedObjectContext
-    ) -> Bool {
+    ) -> Validation {
         if mail.isEmpty || username.isEmpty || password.isEmpty {
-            return false
+            return .fieldsInvalid
         } else {
             let user = User(context: viewContext)
             user.id = UUID()
@@ -96,7 +97,12 @@ class PersistenceController {
             user.birthdate = birthdate
             user.isSeller = isSeller
             save(viewContext: viewContext)
-            return true
+            
+            if isSeller {
+                return .successSeller
+            } else {
+                return .successCustomer
+            }
         }
     }
     
@@ -105,24 +111,18 @@ class PersistenceController {
         save(viewContext: viewContext)
     }
     
-    func validateUser(username: String, password: String) -> Bool {
+    func validateUser(users: FetchedResults<User>, username: String, password: String) -> Validation {
         if username.isEmpty || password.isEmpty {
-            return false
+            return .fieldsInvalid
         } else {
-            return true
-//            let user = User(context: viewContext)
-//            user.id = UUID()
-//            user.mail = mail
-//            user.username = username
-//            user.password = password
-//            user.birthdate = birthdate
-//            user.isSeller = isSeller
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
+            if let user = users.first(where: { $0.username == username && $0.password == password }) {
+                if user.isSeller == false {
+                    return .successCustomer
+                } else {
+                    return .successSeller
+                }
+            }
+            return .credentialsInvalid
         }
     }
 

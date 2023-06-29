@@ -37,6 +37,9 @@
 		89E971742A4B0EF500699258 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971732A4B0EF500699258 /* AppData.swift */; };
 		89E971762A4B0F2800699258 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971752A4B0F2800699258 /* AppViewModel.swift */; };
 		89E971782A4C1C6B00699258 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971772A4C1C6B00699258 /* LoadingOverlay.swift */; };
+		89E9717A2A4D7E0F00699258 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971792A4D7E0F00699258 /* Validation.swift */; };
+		89E9717C2A4D976800699258 /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E9717B2A4D976800699258 /* LoginState.swift */; };
+		89E9717E2A4DB54200699258 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E9717D2A4DB54200699258 /* Logout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +76,9 @@
 		89E971732A4B0EF500699258 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		89E971752A4B0F2800699258 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		89E971772A4C1C6B00699258 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		89E971792A4D7E0F00699258 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		89E9717B2A4D976800699258 /* LoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
+		89E9717D2A4DB54200699258 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 				895E7C4B2A39E5410024956E /* ProductPage.swift */,
 				890BE6B52A262E1C009D04C8 /* Registration.swift */,
 				8911A3442A3B4578000B8269 /* Login.swift */,
+				89E9717D2A4DB54200699258 /* Logout.swift */,
 				895E7C442A3752D10024956E /* EditProduct.swift */,
 				890BE6C12A2750EA009D04C8 /* ShoppingCart.swift */,
 				890BE6BD2A2750D9009D04C8 /* Settings.swift */,
@@ -112,6 +119,8 @@
 			children = (
 				895E7C512A39EE430024956E /* ExampleText.swift */,
 				890BE6BB2A274DED009D04C8 /* Tab.swift */,
+				89E971792A4D7E0F00699258 /* Validation.swift */,
+				89E9717B2A4D976800699258 /* LoginState.swift */,
 				890BE6B12A1F9529009D04C8 /* Placeholder.swift */,
 				89E971732A4B0EF500699258 /* AppData.swift */,
 				89BECF612A1F5DD800BD0034 /* Persistence.swift */,
@@ -271,10 +280,13 @@
 				890BE6C22A2750EA009D04C8 /* ShoppingCart.swift in Sources */,
 				890BE6B02A1F6976009D04C8 /* OnlineStore.xcdatamodeld in Sources */,
 				890BE6D22A35D501009D04C8 /* RectangleButton.swift in Sources */,
+				89E9717A2A4D7E0F00699258 /* Validation.swift in Sources */,
 				895E7C4A2A39E5350024956E /* CategoryPage.swift in Sources */,
 				895E7C4C2A39E5410024956E /* ProductPage.swift in Sources */,
 				890BE6BC2A274DED009D04C8 /* Tab.swift in Sources */,
 				890BE6B82A274D31009D04C8 /* Home.swift in Sources */,
+				89E9717C2A4D976800699258 /* LoginState.swift in Sources */,
+				89E9717E2A4DB54200699258 /* Logout.swift in Sources */,
 				8911A3452A3B4578000B8269 /* Login.swift in Sources */,
 				89BECF592A1F5DD700BD0034 /* OnlineStoreApp.swift in Sources */,
 				890BE6C62A276367009D04C8 /* ProductRectangle.swift in Sources */,

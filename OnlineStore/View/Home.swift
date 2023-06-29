@@ -12,46 +12,47 @@ struct Home: View {
     @State private var searchText = ""
     
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                // Top products
-                Text("Top Products")
-                    .font(.title2)
-                
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    ForEach(placeholderVM.placeholder) { placeholder in
-                        NavigationLink(destination: ProductPage(currentPlaceholder: placeholder)) {
-                            ProductRectangle(title: placeholder.title)
-                        }
-                        .buttonStyle(.plain)
+        ScrollView(showsIndicators: false) {
+            // Top products
+            Text("Top Products")
+                .font(.title2)
+            
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                ForEach(placeholderVM.placeholder) { placeholder in
+                    NavigationLink(destination: ProductPage(currentPlaceholder: placeholder)) {
+                        ProductRectangle(title: placeholder.title)
                     }
+                    .buttonStyle(.plain)
                 }
-                
-                Divider()
-                
-                // Categories
-                Text("Categories")
-                    .font(.title2)
-                
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    ForEach(placeholderVM.placeholder) { placeholder in
-                        NavigationLink(destination: CategoryPage()) {
-                            ProductRound(title: placeholder.title)
-                        }
-                        .buttonStyle(.plain)
+            }
+            
+            Divider()
+            
+            // Categories
+            Text("Categories")
+                .font(.title2)
+            
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                ForEach(placeholderVM.placeholder) { placeholder in
+                    NavigationLink(destination: CategoryPage()) {
+                        ProductRound(title: placeholder.title)
                     }
+                    .buttonStyle(.plain)
                 }
-                
             }
-            .navigationTitle("Welcome user!")
-            .navigationBarTitleDisplayMode(.large)
-            .padding()
+            
         }
-        .searchable(text: $searchText) {
-            ForEach(searchResults, id: \.self) { result in
-                Text(result).searchCompletion(result)
-            }
-        }
+        .navigationTitle("Welcome user!")
+        .navigationBarTitleDisplayMode(.large)
+        .padding()
+//        NavigationStack {
+//
+//        }
+//        .searchable(text: $searchText) {
+//            ForEach(searchResults, id: \.self) { result in
+//                Text(result).searchCompletion(result)
+//            }
+//        }
     }
     
     var searchResults: [String] {

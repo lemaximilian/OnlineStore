@@ -12,41 +12,39 @@ struct ShoppingCart: View {
     @State var showAlert = false
     
     var body: some View {
-        NavigationView {
-            if placeholderVM.shoppingCart.isEmpty {
-                Text("Shopping Cart is empty")
-                    .navigationTitle("Shopping Cart")
-                    .padding()
-            } else {
-                ScrollView(showsIndicators: false) {
-                    HStack {
-                        Text("\(placeholderVM.shoppingCart.count) Products")
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    
-                    ForEach(placeholderVM.shoppingCart) { placeholder in
-                        ShoppingCartItem(title: placeholder.title)
-                        Divider()
-                    }
-                }
+        if placeholderVM.shoppingCart.isEmpty {
+            Text("Shopping Cart is empty")
                 .navigationTitle("Shopping Cart")
                 .padding()
-                .toolbar {
-                    ToolbarItem(placement: .bottomBar) {
-                        Button {
-                            showAlert = true
-                        } label: {
-                            HStack {
-                                Image(systemName: "eurosign")
-                                Text("Purchase")
-                            }
+        } else {
+            ScrollView(showsIndicators: false) {
+                HStack {
+                    Text("\(placeholderVM.shoppingCart.count) Products")
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                ForEach(placeholderVM.shoppingCart) { placeholder in
+                    ShoppingCartItem(title: placeholder.title)
+                    Divider()
+                }
+            }
+            .navigationTitle("Shopping Cart")
+            .padding()
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Button {
+                        showAlert = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "eurosign")
+                            Text("Purchase")
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
-                        .alert("Purchased successfully!", isPresented: $showAlert) {
-                                    Button("OK", role: .cancel) { }
-                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding()
+                    .alert("Purchased successfully!", isPresented: $showAlert) {
+                                Button("OK", role: .cancel) { }
                     }
                 }
             }

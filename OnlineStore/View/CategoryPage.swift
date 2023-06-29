@@ -11,21 +11,19 @@ struct CategoryPage: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    ForEach(placeholderVM.placeholder) { product in
-                        NavigationLink(destination: ProductPage(currentPlaceholder: product)) {
-                            ProductRectangle(title: product.title)
-                        }
-                        .buttonStyle(.plain)
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                ForEach(placeholderVM.placeholder) { product in
+                    NavigationLink(destination: ProductPage(currentPlaceholder: product)) {
+                        ProductRectangle(title: product.title)
                     }
-                    
+                    .buttonStyle(.plain)
                 }
+                
             }
-            .navigationTitle("Category")
-            .padding()
         }
+        .navigationTitle("Category")
+        .padding()
     }
 }
 

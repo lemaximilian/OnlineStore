@@ -11,43 +11,36 @@ struct Management: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        VStack {
-            
-//            HStack {
-//                Text("Manage Store")
-//                    .font(.largeTitle)
-//                    .bold()
-//                Spacer()
-//            }
-//            .padding()
-            
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                NavigationLink(destination: NewProduct()) {
-                    RectangleButton(title: "New Product", image: "plus")
+        NavigationStack {
+            VStack {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                    NavigationLink(destination: NewProduct()) {
+                        RectangleButton(title: "New Product", image: "plus")
+                    }
+                    .buttonStyle(.plain)
+                    
+                    NavigationLink(destination: EditProduct()) {
+                        RectangleButton(title: "Edit Product", image: "pencil")
+                    }
+                    .buttonStyle(.plain)
+                    
+                    NavigationLink(destination: Home()) {
+                        RectangleButton(title: "Support Requests", image: "person.fill")
+                    }
+                    .buttonStyle(.plain)
+                    
+                    NavigationLink(destination: Logout()) {
+                        RectangleButton(title: "Settings", image: "gearshape.fill")
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
                 
-                NavigationLink(destination: EditProduct()) {
-                    RectangleButton(title: "Edit Product", image: "pencil")
-                }
-                .buttonStyle(.plain)
-                
-                NavigationLink(destination: Home()) {
-                    RectangleButton(title: "Support Requests", image: "person.fill")
-                }
-                .buttonStyle(.plain)
-                
-                NavigationLink(destination: Home()) {
-                    RectangleButton(title: "Settings", image: "gearshape.fill")
-                }
-                .buttonStyle(.plain)
+                Spacer()
             }
-            
-            Spacer()
+            .navigationTitle("Manage Store")
+            .navigationBarTitleDisplayMode(.large)
+            .padding()
         }
-        .navigationTitle("Manage Store")
-        .navigationBarTitleDisplayMode(.large)
-        .padding()
     }
 }
 

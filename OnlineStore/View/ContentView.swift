@@ -13,11 +13,15 @@ struct ContentView: View {
     @EnvironmentObject var appVM: AppViewModel
     
     var body: some View {
-        if !appVM.isLoggedIn {
-            Registration()
+        switch appVM.isLoggedIn {
+        case .notLoggedIn:
+            Login()
                 .transition(.move(edge: .trailing))
-        } else {
+        case .loggedInCustomer:
             TabController()
+                .transition(.move(edge: .trailing))
+        case .loggedInSeller:
+            Management()
                 .transition(.move(edge: .trailing))
         }
     }

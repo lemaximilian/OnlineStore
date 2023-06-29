@@ -9,14 +9,22 @@ import Foundation
 
 struct AppData {
     var alertShown = false
+    var invalidFields = false
     var isLoading = false
-    var isLoggedIn = false
+    var isLoggedIn: LoginState = .notLoggedIn
     
-    mutating func login() {
-        isLoggedIn = true
+    mutating func loginCustomer() {
+        isLoggedIn = .loggedInCustomer
+        isLoading = false
+    }
+    
+    mutating func loginSeller() {
+        isLoggedIn = .loggedInSeller
+        isLoading = false
     }
     
     mutating func logout() {
-        isLoggedIn = false
+        isLoggedIn = .notLoggedIn
+        isLoading = false
     }
 }

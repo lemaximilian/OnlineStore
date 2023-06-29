@@ -12,11 +12,11 @@ struct Login: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @EnvironmentObject var appVM: AppViewModel
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @FetchRequest(sortDescriptors: []) private var users: FetchedResults<User>
     
     @State private var username = ""
     @State private var password = ""
+    @State private var startAnimation = false
     
     var body: some View {
         NavigationStack {
@@ -38,19 +38,64 @@ struct Login: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
+                if appVM.invalidFields {
+                    Text("User Credentials doesn't match. Please check again.")
+                        .font(.footnote)
+                        .foregroundColor(.red)
+                        .offset(x: startAnimation ? 30 : 0)
+                        .padding()
+                }
                 // Button to Login
                 
-//                NavigationLink(destination: Management()) {
-//                    Text("Login")
-//                }
-//                .buttonStyle(.borderedProminent)
-//                .padding()
+    //                NavigationLink(destination: Management()) {
+    //                    Text("Login")
+    //                }
+    //                .buttonStyle(.borderedProminent)
+    //                .padding()
                 
                 Button("Login") {
-                    if PersistenceController.shared.validateUser(username: username, password: password) {
-                        appVM.login()
-                    } else {
-                        appVM.alertShown = true
+    //                    if PersistenceController.shared.validateUser(
+    //                        users: users,
+    //                        username: username,
+    //                        password: password
+    //                    ) {
+    //                        withAnimation {
+    //                            appVM.isLoading.toggle()
+    //                        }
+    //                        appVM.login()
+    //                    } else {
+    //                        appVM.alertShown.toggle()
+    //                    }
+                    switch PersistenceController.shared.validateUser(
+                        users: users,
+                        username: username,
+                        password: password
+                    ) {
+                    case .fieldsInvalid:
+                        appVM.invalidFields = false
+                        appVM.alertShown.toggle()
+                    case .credentialsInvalid:
+                        appVM.invalidFields = true
+                        startAnimation = true
+                        withAnimation(.spring(
+                            response: 0.2,
+                            dampingFraction: 0.2,
+                            blendDuration: 0.2
+                        )) {
+                            startAnimation = false
+                        }
+                    case .successCustomer:
+                        appVM.invalidFields = false
+                        withAnimation {
+                            appVM.isLoading.toggle()
+                        }
+                        appVM.loginCustomer()
+                    case .successSeller:
+                        appVM.invalidFields = false
+                        withAnimation {
+                            appVM.isLoading.toggle()
+                        }
+                        appVM.loginSeller()
                     }
                 }
                 .alert(Text("Missing inputs"), isPresented: $appVM.alertShown, actions: {
@@ -66,13 +111,15 @@ struct Login: View {
                 // Button to Login
                 HStack {
                     Spacer()
-                    Button("No account? Register here!") {
-                        self.presentationMode.wrappedValue.dismiss()
+                    NavigationLink(destination: Registration()) {
+                        Text("No account? Register here!")
                     }
                     .padding()
                 }
             }
-            .navigationBarBackButtonHidden(true)
+            .disabled(appVM.isLoading)
+            .blur(radius: appVM.isLoading ? 3 : 0)
+            .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))
             .padding()
         }
     }

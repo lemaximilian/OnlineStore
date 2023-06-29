@@ -12,6 +12,7 @@ struct Registration: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @EnvironmentObject var appVM: AppViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @FetchRequest(sortDescriptors: []) private var users: FetchedResults<User>
     
     @State private var mail = ""
@@ -21,92 +22,99 @@ struct Registration: View {
     @State private var isSeller = false
     
     var body: some View {
-        NavigationStack {
-            VStack {
+        VStack {
+            
+            Spacer()
+            
+            Group {
+                // Title
+                Text("Registration")
+                    .font(.title)
+                    .bold()
                 
-                Spacer()
+                // User Inputs
+                TextField("E-Mail Address", text: $mail)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 
-                Group {
-                    // Title
-                    Text("Registration")
-                        .font(.title)
-                        .bold()
-                    
-                    // User Inputs
-                    TextField("E-Mail Address", text: $mail)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    TextField("Username", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
-                        .padding()
-                    
-                    Toggle("Seller Account", isOn: $isSeller)
-                        .padding()
-                }
+                TextField("Username", text: $username)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 
-                // Button to Register
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 
+                DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
+                    .padding()
+                
+                Toggle("Seller Account", isOn: $isSeller)
+                    .padding()
+            }
+            
+            // Button to Register
+            
 //                NavigationLink(destination: TabController()) {
 //                    Text("Register")
 //                }
 //                .buttonStyle(.borderedProminent)
 //                .padding()
-                Button("Register") {
-                    if PersistenceController.shared.addUser(
-                        mail: mail,
-                        username: username,
-                        password: password,
-                        birthdate: birthdate,
-                        isSeller: isSeller,
-                        viewContext: viewContext
-                    ) {
-                        withAnimation {
-                            appVM.isLoading = true
-                        }
-                        appVM.login()
-                    } else {
-                        appVM.alertShown = true
+            Button("Register") {
+                switch PersistenceController.shared.addUser(
+                    mail: mail,
+                    username: username,
+                    password: password,
+                    birthdate: birthdate,
+                    isSeller: isSeller,
+                    viewContext: viewContext
+                ) {
+                case .fieldsInvalid: appVM.alertShown.toggle()
+                case .credentialsInvalid:
+                    print("Oops, something went wrong.")
+                case .successCustomer:
+                    withAnimation {
+                        appVM.isLoading = true
                     }
-                }
-                .alert(Text("Missing inputs"), isPresented: $appVM.alertShown, actions: {
-                    Button("Confirm") { }
-                }, message: {
-                    Text("Please enter an email or username or password.")
-                })
-                .buttonStyle(.borderedProminent)
-                .padding()
-                
-                Button("Delete all Users", role: .destructive) {
-                    PersistenceController.shared.removeUser(users: users, viewContext: viewContext)
-                }
-                .buttonStyle(.borderedProminent)
-                .padding()
-                
-                Spacer()
-                
-                // Button to Login
-                HStack {
-                    Spacer()
-                    NavigationLink(destination: Login()) {
-                        Text("Login with an existing account")
+                    appVM.loginCustomer()
+                case .successSeller:
+                    withAnimation {
+                        appVM.isLoading = true
                     }
-                    .padding()
+                    appVM.loginSeller()
                 }
             }
+            .alert(Text("Missing inputs"), isPresented: $appVM.alertShown, actions: {
+                Button("Confirm") { }
+            }, message: {
+                Text("Please enter an email or username or password.")
+            })
+            .buttonStyle(.borderedProminent)
             .padding()
+            
+            Button("Delete all Users", role: .destructive) {
+                PersistenceController.shared.removeUser(users: users, viewContext: viewContext)
+            }
+            .buttonStyle(.borderedProminent)
+            .padding()
+            
+            Spacer()
+            
+            // Button to Login
+            HStack {
+                Spacer()
+                Button("Login with an existing account") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .padding()
+            }
         }
+        .navigationBarBackButtonHidden(true)
         .disabled(appVM.isLoading)
         .blur(radius: appVM.isLoading ? 3 : 0)
-        .overlay(LoadingOverlay(isLoading: $appVM.isLoading))
+        .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))
+        .padding()
     }
+        
 }
 
 struct Registration_Previews: PreviewProvider {

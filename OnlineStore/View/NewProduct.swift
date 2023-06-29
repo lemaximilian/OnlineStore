@@ -18,15 +18,6 @@ struct NewProduct: View {
     
     var body: some View {
         VStack {
-            
-//            HStack {
-//                Text("New Product")
-//                    .font(.largeTitle)
-//                    .bold()
-//                Spacer()
-//            }
-//            .padding()
-            
             ScrollView(showsIndicators: false) {
                 TextField("Title", text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -90,7 +81,6 @@ struct NewProduct: View {
                         .frame(width: 250, height: 250)
                 }
             }
-            
         }
         .navigationTitle("New Product")
         .padding()

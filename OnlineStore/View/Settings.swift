@@ -11,33 +11,31 @@ struct Settings: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     
     var body: some View {
-        NavigationView {
-            List {
-                Section("User Settings") {
-                    ForEach(placeholderVM.placeholder) { setting in
-                        NavigationLink(destination: Settings()) {
-                            Text(setting.title)
-                        }
-                    }
-                }
-                Section("Appearance") {
-                    ForEach(placeholderVM.placeholder) { setting in
-                        NavigationLink(destination: Settings()) {
-                            Text(setting.title)
-                        }
-                    }
-                }
-                Section("Privacy Settings") {
-                    ForEach(placeholderVM.placeholder) { setting in
-                        NavigationLink(destination: Settings()) {
-                            Text(setting.title)
-                        }
+        List {
+            Section("User Settings") {
+                ForEach(placeholderVM.placeholder) { setting in
+                    NavigationLink(destination: Settings()) {
+                        Text(setting.title)
                     }
                 }
             }
-            .navigationTitle("Settings")
-            .listStyle(.plain)
+            Section("Appearance") {
+                ForEach(placeholderVM.placeholder) { setting in
+                    NavigationLink(destination: Settings()) {
+                        Text(setting.title)
+                    }
+                }
+            }
+            Section("Privacy Settings") {
+                ForEach(placeholderVM.placeholder) { setting in
+                    NavigationLink(destination: Settings()) {
+                        Text(setting.title)
+                    }
+                }
+            }
         }
+        .navigationTitle("Settings")
+        .listStyle(.plain)
     }
 }
 

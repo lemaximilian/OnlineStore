@@ -16,6 +16,7 @@ struct ProductRectangle: View {
                 .fill()
                 .foregroundColor(.blue)
                 .aspectRatio(contentMode: .fit)
+                .shadow(radius: 5)
             Text(title)
                 .font(.footnote)
         }

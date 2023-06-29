@@ -13,35 +13,42 @@ struct TabController: View {
     
     var body: some View {
         TabView(selection: $tab) {
+            NavigationStack {
+                Home()
+            }
+            .tabItem {
+                Image(systemName: "house")
+                Text("Home")
+            }
+            .tag(Tab.home)
+                
+            NavigationStack {
+                ShoppingCart()
+            }
+            .tabItem {
+                Image(systemName: "cart")
+                Text("Shopping Cart")
+            }
+            .tag(Tab.shoppingCart)
+                
+            NavigationStack {
+                Categories()
+            }
+            .tabItem {
+                Image(systemName: "rectangle.grid.2x2")
+                Text("Categories")
+            }
+            .tag(Tab.categories)
             
-            Home()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-                .tag(Tab.home)
-            
-            ShoppingCart()
-                .tabItem {
-                    Image(systemName: "cart")
-                    Text("Shopping Cart")
-                }
-                .tag(Tab.shoppingCart)
-            
-            Categories()
-                .tabItem {
-                    Image(systemName: "rectangle.grid.2x2")
-                    Text("Categories")
-                }
-                .tag(Tab.categories)
-            
-            Settings()
-                .tabItem {
-                    Image(systemName: "gearshape")
-                    Text("Settings")
-                }
-                .tag(Tab.settings)
-            
+            NavigationStack {
+                Logout()
+            }
+            .tabItem {
+                Image(systemName: "gearshape")
+                Text("Settings")
+            }
+            .tag(Tab.settings)
+                
         }
     }
 }

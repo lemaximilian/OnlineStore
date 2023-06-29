@@ -9,10 +9,11 @@ import SwiftUI
 
 struct LoadingOverlay: View {
     @Binding var isLoading: Bool
+    var title: String
     
     var body: some View {
         if isLoading {
-            ProgressView("Loading")
+            ProgressView(title)
                 .frame(width: 100, height: 100)
                 .background(.white)
                 .cornerRadius(20)
