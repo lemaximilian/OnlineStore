@@ -11,6 +11,7 @@ import SwiftUI
 struct OnlineStoreApp: App {
     @StateObject private var placeholder = PlaceholderViewModel()
     @StateObject private var appData = AppViewModel()
+    @StateObject private var user = UserViewModel()
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -19,6 +20,7 @@ struct OnlineStoreApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(placeholder)
                 .environmentObject(appData)
+                .environmentObject(user)
         }
     }
 }

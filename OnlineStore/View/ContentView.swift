@@ -11,6 +11,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @EnvironmentObject var appVM: AppViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         switch appVM.isLoggedIn {

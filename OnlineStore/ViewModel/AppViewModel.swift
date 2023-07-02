@@ -9,7 +9,6 @@ import SwiftUI
 
 @MainActor
 class AppViewModel: ObservableObject {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Published private var appData = AppData()
     
     var alertShown: Bool {
@@ -32,12 +31,26 @@ class AppViewModel: ObservableObject {
         set { appData.isLoggedIn = newValue }
     }
     
+    var managementButtons: [String] {
+        appData.managementButtons
+    }
+    
+    var managementViews: [any View] {
+        appData.managementViews
+    }
+    
+    func loading() {
+        withAnimation {
+            self.appData.loading()
+        }
+    }
+    
     func loginCustomer() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             withAnimation {
                 self.appData.loginCustomer()
+                self.appData.stopLoading()
             }
-            self.presentationMode.wrappedValue.dismiss()
         }
     }
     
@@ -45,15 +58,16 @@ class AppViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             withAnimation {
                 self.appData.loginSeller()
+                self.appData.stopLoading()
             }
-            self.presentationMode.wrappedValue.dismiss()
         }
     }
     
     func logout() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             withAnimation {
                 self.appData.logout()
+                self.appData.stopLoading()
             }
         }
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Management: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @EnvironmentObject var appVM: AppViewModel
     
     var body: some View {
         NavigationStack {
@@ -29,7 +30,7 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: Logout()) {
+                    NavigationLink(destination: LogoutButton()) {
                         RectangleButton(title: "Settings", image: "gearshape.fill")
                     }
                     .buttonStyle(.plain)
@@ -46,6 +47,7 @@ struct Management: View {
 
 struct Management_Previews: PreviewProvider {
     static var previews: some View {
-        Management().environmentObject(PlaceholderViewModel())
+        Management()
+            .environmentObject(PlaceholderViewModel())
     }
 }

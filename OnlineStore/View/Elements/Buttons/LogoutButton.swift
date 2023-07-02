@@ -1,5 +1,5 @@
 //
-//  Logout.swift
+//  LogoutButton.swift
 //  OnlineStore
 //
 //  Created by Maximilian Le on 29.06.23.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct Logout: View {
+struct LogoutButton: View {
     @EnvironmentObject var appVM: AppViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         Button("Logout", role: .destructive) {

@@ -30,21 +30,21 @@ class PersistenceController {
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "OnlineStore")
         
-        let address = Bundle.main.path(forResource: "OnlineStore", ofType: ".momd")
+//        let address = Bundle.main.path(forResource: "OnlineStore", ofType: ".momd")
+//
+//        let localStoreLocation = URL(fileURLWithPath: "/dev/null")
+//        let localStoreDescription = NSPersistentStoreDescription(url: localStoreLocation)
+//        localStoreDescription.configuration = "Local"
         
-        let localStoreLocation = URL(fileURLWithPath: "\(address!)/local.sqlite")
-        let localStoreDescription = NSPersistentStoreDescription(url: localStoreLocation)
-        localStoreDescription.configuration = "Local"
-        
-        let publicStoreLocation = URL(fileURLWithPath: "\(address!)/public.sqlite")
+        let publicStoreLocation = URL(fileURLWithPath: "/dev/null")
         let publicStoreDescription = NSPersistentStoreDescription(url: publicStoreLocation)
         publicStoreDescription.configuration = "Public"
         publicStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.THKoeln.OnlineStore")
         publicStoreDescription.cloudKitContainerOptions?.databaseScope = .public
         
         container.persistentStoreDescriptions = [
-            publicStoreDescription,
-            localStoreDescription
+            publicStoreDescription
+//            localStoreDescription
         ]
         
 //        guard let description = container.persistentStoreDescriptions.first else {
@@ -124,6 +124,12 @@ class PersistenceController {
             }
             return .credentialsInvalid
         }
+    }
+    
+    func fetchUser(users: FetchedResults<User>, username: String, password: String) -> User {
+        var user = User()
+        user = users.first(where: { $0.username == username && $0.password == password }) ?? User()
+        return user
     }
 
 }

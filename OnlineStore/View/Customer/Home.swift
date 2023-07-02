@@ -9,40 +9,21 @@ import SwiftUI
 
 struct Home: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @State private var searchText = ""
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            // Top products
-            Text("Top Products")
-                .font(.title2)
-            
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                ForEach(placeholderVM.placeholder) { placeholder in
-                    NavigationLink(destination: ProductPage(currentPlaceholder: placeholder)) {
-                        ProductRectangle(title: placeholder.title)
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
+            // Top products section
+            TopProducts(title: "Top Products")
             
             Divider()
             
-            // Categories
-            Text("Categories")
-                .font(.title2)
-            
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                ForEach(placeholderVM.placeholder) { placeholder in
-                    NavigationLink(destination: CategoryPage()) {
-                        ProductRound(title: placeholder.title)
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
+            // Top categories section
+            CategoriesWithTitle(title: "Categories")
             
         }
-        .navigationTitle("Welcome user!")
+        .navigationTitle("Home")
         .navigationBarTitleDisplayMode(.large)
         .padding()
 //        NavigationStack {
