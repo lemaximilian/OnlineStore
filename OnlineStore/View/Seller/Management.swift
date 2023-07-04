@@ -25,7 +25,7 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: Home()) {
+                    NavigationLink(destination: NewCategory()) {
                         RectangleButton(title: "Support Requests", image: "person.fill")
                     }
                     .buttonStyle(.plain)

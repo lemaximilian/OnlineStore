@@ -78,6 +78,7 @@ class PersistenceController {
             }
         }
     
+    // User
     func addUser(
         mail: String,
         username: String,
@@ -131,5 +132,46 @@ class PersistenceController {
         user = users.first(where: { $0.username == username && $0.password == password }) ?? User()
         return user
     }
-
+    
+    // Product
+    func addProduct(
+        mail: String,
+        username: String,
+        password: String,
+        birthdate: Date,
+        isSeller: Bool,
+        viewContext: NSManagedObjectContext
+    ) -> Validation {
+        if mail.isEmpty || username.isEmpty || password.isEmpty {
+            return .fieldsInvalid
+        } else {
+            let user = User(context: viewContext)
+            user.id = UUID()
+            user.mail = mail
+            user.username = username
+            user.password = password
+            user.birthdate = birthdate
+            user.isSeller = isSeller
+            save(viewContext: viewContext)
+            
+            if isSeller {
+                return .successSeller
+            } else {
+                return .successCustomer
+            }
+        }
+    }
+    
+    // Category
+    func addCategory(
+        title: String,
+        image: Data?,
+        viewContext: NSManagedObjectContext
+    ) {
+        let category = Category(context: viewContext)
+        category.id = UUID()
+        category.title = title
+        category.image = image
+        save(viewContext: viewContext)
+    }
 }

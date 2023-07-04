@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct ProductRound: View {
-    var title: String
+    var title: String?
+    var image: Data?
     
     var body: some View {
-        ZStack {
-            Circle()
-                .fill()
-                .foregroundColor(.blue)
-                .aspectRatio(contentMode: .fit)
-                .shadow(radius: 5)
-            Text(title)
+        VStack {
+//            Circle()
+//                .fill()
+//                .foregroundColor(.blue)
+//                .aspectRatio(contentMode: .fit)
+//                .shadow(radius: 5)
+            if let image,
+               let uiImage = UIImage(data: image) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
+                    .cornerRadius(20)
+                    .shadow(radius: 5)
+            }
+            Text(title ?? "")
                 .font(.footnote)
         }
-
+        .padding()
     }
 }
 

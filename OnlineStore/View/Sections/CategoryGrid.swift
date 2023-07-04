@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct CategoryGrid: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.order)]) private var categories: FetchedResults<Category>
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-            ForEach(placeholderVM.placeholder) { placeholder in
-                NavigationLink(destination: CategoryPage()) {
-                    ProductRound(title: placeholder.title)
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                ForEach(categories) { category in
+                    NavigationLink(destination: CategoryPage()) {
+                        ProductRound(title: category.title, image: category.image)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
     }

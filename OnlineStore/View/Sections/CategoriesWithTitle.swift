@@ -15,14 +15,7 @@ struct CategoriesWithTitle: View {
         Text(title)
             .font(.title2)
         
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-            ForEach(placeholderVM.placeholder) { placeholder in
-                NavigationLink(destination: CategoryPage()) {
-                    ProductRound(title: placeholder.title)
-                }
-                .buttonStyle(.plain)
-            }
-        }
+        CategoryGrid()
     }
 }
 

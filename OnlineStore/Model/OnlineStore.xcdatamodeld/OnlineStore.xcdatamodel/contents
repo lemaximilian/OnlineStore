@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+    <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="product" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="category" inverseEntity="Product"/>
     </entity>
-    <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="String"/>
+    <entity name="Product" representedClassName="Product" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String"/>
-        <attribute name="highlights" optional="YES" attributeType="String"/>
+        <attribute name="highlights" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="product" inverseEntity="Category"/>
+        <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Review" inverseName="product" inverseEntity="Review"/>
     </entity>
-    <entity name="Review" representedClassName="Review" syncable="YES" codeGenerationType="class">
+    <entity name="Review" representedClassName="Review" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="review" inverseEntity="Product"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="review" inverseEntity="User"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="ShoppingCart" representedClassName="ShoppingCart" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="shoppingCart" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="birthdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isSeller" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="mail" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Review" inverseName="user" inverseEntity="Review"/>
+        <relationship name="shoppingCart" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingCart" inverseName="user" inverseEntity="ShoppingCart"/>
     </entity>
     <configuration name="Local" usedWithCloudKit="YES">
         <memberEntity name="User"/>
         <memberEntity name="Review"/>
         <memberEntity name="Product"/>
         <memberEntity name="Category"/>
+        <memberEntity name="ShoppingCart"/>
     </configuration>
     <configuration name="Public" usedWithCloudKit="YES">
         <memberEntity name="User"/>
         <memberEntity name="Review"/>
         <memberEntity name="Product"/>
         <memberEntity name="Category"/>
+        <memberEntity name="ShoppingCart"/>
     </configuration>
 </model>

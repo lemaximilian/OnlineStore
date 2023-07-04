@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) var viewContext
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @EnvironmentObject var appVM: AppViewModel
-    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         switch appVM.isLoggedIn {
@@ -31,7 +28,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(PlaceholderViewModel())
             .environmentObject(AppViewModel())
     }
 }
