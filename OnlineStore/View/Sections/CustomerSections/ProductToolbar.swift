@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct ProductToolbar: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @Binding var showAlert: Bool
-    var currentPlaceholder: Placeholder
+    var currentProduct: Product
 
     var body: some View {
         HStack {
             Button {
-                placeholderVM.addToShoppingCart(currentPlaceholder)
                 showAlert = true
             } label: {
                 HStack {

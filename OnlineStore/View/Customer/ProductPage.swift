@@ -8,34 +8,52 @@
 import SwiftUI
 
 struct ProductPage: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @State var selection = ""
     @State var showAlert = false
-    var currentPlaceholder: Placeholder
+    @State var highlightArray: [String] = []
+    var currentProduct: Product
+    var imageArray: [Data]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
     
-            ProductImages()
+            ProductImages(imageArray: imageArray)
+//            if let image,
+//               let uiImage = UIImage(data: image) {
+//                Image(uiImage: uiImage)
+//                    .resizable()
+//                    .aspectRatio(1, contentMode: .fit)
+//                    .cornerRadius(20)
+//                    .shadow(radius: 5)
+//            }
             
-            PriceText()
+            PriceText(price: currentProduct.price)
             
             Divider()
             
-            ProductDescription()
+            ProductDescription(description: currentProduct.details)
             
             Divider()
             
-            ProductHighlights()
+            ProductHighlights(highlightArray: highlightArray)
             
             ProductReviews()
             
         }
-        .navigationTitle(currentPlaceholder.title)
+        .navigationTitle(currentProduct.title ?? "")
         .padding()
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                ProductToolbar(showAlert: $showAlert, currentPlaceholder: currentPlaceholder)
+                ProductToolbar(showAlert: $showAlert, currentProduct: currentProduct)
+            }
+        }
+        .onAppear {
+            do {
+                if let loadedHighlights =  try NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: currentProduct.highlights ?? Data()) as? [String] {
+                    highlightArray = loadedHighlights
+                }
+            } catch {
+                print("Could not unarchive Highlight Array.")
             }
         }
     }

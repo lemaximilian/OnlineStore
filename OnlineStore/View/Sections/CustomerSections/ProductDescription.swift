@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductDescription: View {
     let text = exampleText
+    var description: String?
     
     var body: some View {
         HStack {
@@ -18,7 +19,7 @@ struct ProductDescription: View {
         }
         .padding()
 
-        Text(text)
+        Text(description ?? "")
             .padding(.horizontal)
     }
 }

@@ -21,11 +21,11 @@ struct LoginFields: View {
         
         // User Inputs
         TextField("Username", text: $username)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(.roundedBorder)
             .padding()
         
         SecureField("Password", text: $password)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(.roundedBorder)
             .padding()
         
         if appVM.invalidFields {

@@ -135,31 +135,44 @@ class PersistenceController {
     
     // Product
     func addProduct(
-        mail: String,
-        username: String,
-        password: String,
-        birthdate: Date,
-        isSeller: Bool,
+        title: String,
+        price: Float,
+        details: String,
+        category: Category,
+        highlight: [String],
+        image: [Data?],
         viewContext: NSManagedObjectContext
-    ) -> Validation {
-        if mail.isEmpty || username.isEmpty || password.isEmpty {
-            return .fieldsInvalid
-        } else {
-            let user = User(context: viewContext)
-            user.id = UUID()
-            user.mail = mail
-            user.username = username
-            user.password = password
-            user.birthdate = birthdate
-            user.isSeller = isSeller
-            save(viewContext: viewContext)
-            
-            if isSeller {
-                return .successSeller
-            } else {
-                return .successCustomer
-            }
+    ) {
+        let product = Product(context: viewContext)
+        product.id = UUID()
+        product.title = title
+        product.price = price
+        product.details = details
+        do {
+            product.highlights = try NSKeyedArchiver.archivedData(withRootObject: highlight, requiringSecureCoding: false)
+        } catch {
+            print("Failed to archive Highlight Array.")
         }
+        do {
+            product.image = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
+        } catch {
+            print("Failed to archive Image Array.")
+        }
+//        product.image = image
+        category.addToProduct(product)
+        save(viewContext: viewContext)
+    }
+    
+    func fetchProductImages(product: Product) -> [Data] {
+        var imageArray: [Data] = []
+        do {
+            if let loadedImages =  try NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: product.image ?? Data()) as? [Data] {
+                imageArray = loadedImages
+            }
+        } catch {
+            print("Could not unarchive Images Array.")
+        }
+        return imageArray 
     }
     
     // Category

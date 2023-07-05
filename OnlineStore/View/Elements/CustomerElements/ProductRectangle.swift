@@ -1,23 +1,18 @@
 //
-//  ProductRound.swift
+//  ProductRectangle.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 05.06.23.
+//  Created by Maximilian Le on 31.05.23.
 //
 
 import SwiftUI
 
-struct ProductRound: View {
+struct ProductRectangle: View {
     var title: String?
     var image: Data?
     
     var body: some View {
         VStack {
-//            Circle()
-//                .fill()
-//                .foregroundColor(.blue)
-//                .aspectRatio(contentMode: .fit)
-//                .shadow(radius: 5)
             if let image,
                let uiImage = UIImage(data: image) {
                 Image(uiImage: uiImage)
@@ -32,4 +27,3 @@ struct ProductRound: View {
         .padding()
     }
 }
-

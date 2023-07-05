@@ -9,80 +9,61 @@ import SwiftUI
 import PhotosUI
 
 struct NewProduct: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.order)]) private var categories: FetchedResults<Category>
+    @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var appVM: AppViewModel
     @State private var title = ""
+    @State private var price: Float = 0.0
     @State private var description = ""
-    @State private var selectedCategory = "Smartphones"
+    @State private var selectedCategoryName = "Smartphones"
+    @State private var selectedCategory = Category()
+    @State private var highlightArray: [String] = []
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
+    @State private var imageArray: [Data?] = []
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ProductFields(title: $title, description: $description)
+            ProductFields(title: $title, price: $price, description: $description)
             
-            Picker("Category", selection: $selectedCategory) {
-                ForEach(categories, id: \.wrappedTitle) { category in
-                    Text(category.wrappedTitle)
-                }
+            CategoryPicker(selectedCategoryName: $selectedCategoryName, selectedCategory: $selectedCategory)
+            
+            HighlightList(highlightArray: $highlightArray)
+            
+            ProductPhoto(selectedItem: $selectedItem, selectedImageData: $selectedImageData, imageArray: $imageArray)
+            
+            Button("Add Product") {
+                PersistenceController.shared.addProduct(
+                    title: title,
+                    price: price,
+                    details: description,
+                    category: selectedCategory,
+                    highlight: highlightArray,
+                    image: imageArray,
+                    viewContext: viewContext
+                )
             }
-            .pickerStyle(.navigationLink)
+            .alert(isPresented: $appVM.alertShown) {
+                MissingAlert
+            }
+            .buttonStyle(.borderedProminent)
             .padding()
-            
-            List {
-                Section("Highlights") {
-                    ForEach(placeholderVM.placeholder) { highlight in
-                        Text(highlight.title)
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .frame(minHeight: 200)
-            
-            PhotosPicker(
-                    selection: $selectedItem,
-                    matching: .images,
-                    photoLibrary: .shared()) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke()
-                                .aspectRatio(contentMode: .fit)
-                            
-                            VStack {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                
-                                Text("Add Image")
-                                    .font(.footnote)
-                                    .bold()
-                            }
-                        }
-                    }
-                    .onChange(of: selectedItem) { newItem in
-                        Task {
-                            if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                                selectedImageData = data
-                            }
-                        }
-                    }
-            
-            if let selectedImageData,
-               let uiImage = UIImage(data: selectedImageData) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 250, height: 250)
-            }
         }
         .navigationTitle("New Product")
         .padding()
+    }
+    
+    var MissingAlert: Alert {
+        Alert(
+            title: Text("Missing Inputs"),
+            message: Text("Please check your inputs"),
+            dismissButton: .default(Text("Confirm"))
+        )
     }
 }
 
 struct NewProduct_Previews: PreviewProvider {
     static var previews: some View {
         NewProduct()
-            .environmentObject(PlaceholderViewModel())
+            .environmentObject(AppViewModel())
     }
 }

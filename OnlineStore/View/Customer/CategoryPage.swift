@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CategoryPage: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    
     var body: some View {
         ScrollView(showsIndicators: false) {
             ProductGrid()
@@ -22,6 +20,5 @@ struct CategoryPage: View {
 struct CategoryPage_Previews: PreviewProvider {
     static var previews: some View {
         CategoryPage()
-            .environmentObject(PlaceholderViewModel())
     }
 }

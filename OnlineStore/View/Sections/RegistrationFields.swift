@@ -22,15 +22,15 @@ struct RegistrationFields: View {
             
             // User Inputs
             TextField("E-Mail Address", text: $mail)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.roundedBorder)
                 .padding()
             
             TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.roundedBorder)
                 .padding()
             
             SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.roundedBorder)
                 .padding()
             
             DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
