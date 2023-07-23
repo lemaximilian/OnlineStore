@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 04.07.23.
+//  Created by Maximilian Le on 21.07.23.
 //
 //
 
@@ -22,44 +22,16 @@ extension User {
     @NSManaged public var mail: String?
     @NSManaged public var password: String?
     @NSManaged public var username: String?
-    @NSManaged public var shoppingCart: ShoppingCart?
-    @NSManaged public var review: NSSet?
-    
-    public var wrappedBirthdate: Date {
-        birthdate ?? Date()
-    }
-    
-    public var wrappedId: UUID {
-        id ?? UUID()
-    }
-    
-    public var wrappedIsSeller: Bool {
-        isSeller
-    }
-    
-    public var wrappedMail: String {
-        mail ?? "Unknown Mail"
-    }
-    
-    public var wrappedPassword: String {
-        password ?? "Unknown Password"
-    }
-    
-    public var wrappedUsername: String {
-        username ?? "Unknown Username"
-    }
-    
-    public var wrappedShoppingCart: ShoppingCart {
-        shoppingCart ?? ShoppingCart()
-    }
-    
-    public var reviewArray: [Review] {
-        let set = review as? Set<Review> ?? []
-        return set.sorted {
-            $0.wrappedTitle < $1.wrappedTitle
-        }
-    }
+    @NSManaged public var review: Set<Review>
+    @NSManaged public var shoppingCart: Set<Product>
 
+//    public var shoppingCartArray: [Product] {
+//        let set = shoppingCart as? Set<Product> ?? []
+//        return set.sorted {
+//            $0.id < $1.id
+//        }
+//    }
+    
 }
 
 // MARK: Generated accessors for review
@@ -76,6 +48,23 @@ extension User {
 
     @objc(removeReview:)
     @NSManaged public func removeFromReview(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for shoppingCart
+extension User {
+
+    @objc(addShoppingCartObject:)
+    @NSManaged public func addToShoppingCart(_ value: Product)
+
+    @objc(removeShoppingCartObject:)
+    @NSManaged public func removeFromShoppingCart(_ value: Product)
+
+    @objc(addShoppingCart:)
+    @NSManaged public func addToShoppingCart(_ values: NSSet)
+
+    @objc(removeShoppingCart:)
+    @NSManaged public func removeFromShoppingCart(_ values: NSSet)
 
 }
 

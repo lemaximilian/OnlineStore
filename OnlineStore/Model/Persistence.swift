@@ -39,18 +39,14 @@ class PersistenceController {
         let publicStoreLocation = URL(fileURLWithPath: "/dev/null")
         let publicStoreDescription = NSPersistentStoreDescription(url: publicStoreLocation)
         publicStoreDescription.configuration = "Public"
-        publicStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.THKoeln.OnlineStore")
+        publicStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.THKoeln.Store")
         publicStoreDescription.cloudKitContainerOptions?.databaseScope = .public
         
         container.persistentStoreDescriptions = [
             publicStoreDescription
 //            localStoreDescription
         ]
-        
-//        guard let description = container.persistentStoreDescriptions.first else {
-//            fatalError("Error")
-//        }
-//
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -59,12 +55,16 @@ class PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-//        persistentContainer.loadPersistentStores { storeDescription, error in
-//            guard error == nil else {
-//                fatalError("Could not load persistent stores. \(error!)")
-//            }
-//        }
+        
         container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        do {
+            try container.initializeCloudKitSchema()
+        } catch let error {
+            print(error)
+        }
+        
     }
     
     func save(viewContext: NSManagedObjectContext) {
@@ -72,108 +72,11 @@ class PersistenceController {
                 try viewContext.save()
                 print("Data has been saved successfully.")
             } catch {
-                // Handle errors in our database
+                // Handle errors in database
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-    
-    // User
-    func addUser(
-        mail: String,
-        username: String,
-        password: String,
-        birthdate: Date,
-        isSeller: Bool,
-        viewContext: NSManagedObjectContext
-    ) -> Validation {
-        if mail.isEmpty || username.isEmpty || password.isEmpty {
-            return .fieldsInvalid
-        } else {
-            let user = User(context: viewContext)
-            user.id = UUID()
-            user.mail = mail
-            user.username = username
-            user.password = password
-            user.birthdate = birthdate
-            user.isSeller = isSeller
-            save(viewContext: viewContext)
-            
-            if isSeller {
-                return .successSeller
-            } else {
-                return .successCustomer
-            }
-        }
-    }
-    
-    func removeUser(users: FetchedResults<User>, viewContext: NSManagedObjectContext) {
-        users.forEach(viewContext.delete)
-        save(viewContext: viewContext)
-    }
-    
-    func validateUser(users: FetchedResults<User>, username: String, password: String) -> Validation {
-        if username.isEmpty || password.isEmpty {
-            return .fieldsInvalid
-        } else {
-            if let user = users.first(where: { $0.username == username && $0.password == password }) {
-                if user.isSeller == false {
-                    return .successCustomer
-                } else {
-                    return .successSeller
-                }
-            }
-            return .credentialsInvalid
-        }
-    }
-    
-    func fetchUser(users: FetchedResults<User>, username: String, password: String) -> User {
-        var user = User()
-        user = users.first(where: { $0.username == username && $0.password == password }) ?? User()
-        return user
-    }
-    
-    // Product
-    func addProduct(
-        title: String,
-        price: Float,
-        details: String,
-        category: Category,
-        highlight: [String],
-        image: [Data?],
-        viewContext: NSManagedObjectContext
-    ) {
-        let product = Product(context: viewContext)
-        product.id = UUID()
-        product.title = title
-        product.price = price
-        product.details = details
-        do {
-            product.highlights = try NSKeyedArchiver.archivedData(withRootObject: highlight, requiringSecureCoding: false)
-        } catch {
-            print("Failed to archive Highlight Array.")
-        }
-        do {
-            product.image = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
-        } catch {
-            print("Failed to archive Image Array.")
-        }
-//        product.image = image
-        category.addToProduct(product)
-        save(viewContext: viewContext)
-    }
-    
-    func fetchProductImages(product: Product) -> [Data] {
-        var imageArray: [Data] = []
-        do {
-            if let loadedImages =  try NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: product.image ?? Data()) as? [Data] {
-                imageArray = loadedImages
-            }
-        } catch {
-            print("Could not unarchive Images Array.")
-        }
-        return imageArray 
-    }
     
     // Category
     func addCategory(
@@ -185,6 +88,8 @@ class PersistenceController {
         category.id = UUID()
         category.title = title
         category.image = image
+        let products: [Product] = []
+        category.product = Set(products)
         save(viewContext: viewContext)
     }
 }

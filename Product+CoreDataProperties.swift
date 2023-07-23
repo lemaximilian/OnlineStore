@@ -23,8 +23,8 @@ extension Product {
     @NSManaged public var price: Float
     @NSManaged public var title: String?
     @NSManaged public var category: Category?
-    @NSManaged public var review: NSSet?
-    @NSManaged public var shoppingCart: NSSet?
+    @NSManaged public var review: Set<Review>
+    @NSManaged public var shoppingCart: Set<User>
 
 }
 

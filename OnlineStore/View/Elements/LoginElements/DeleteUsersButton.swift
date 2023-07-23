@@ -13,7 +13,7 @@ struct DeleteUsersButton: View {
     
     var body: some View {
         Button("Delete all Users", role: .destructive) {
-            PersistenceController.shared.removeUser(users: users, viewContext: viewContext)
+            
         }
         .buttonStyle(.borderedProminent)
         .padding()

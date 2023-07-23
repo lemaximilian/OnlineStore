@@ -11,7 +11,7 @@ struct RegisterButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
-    @FetchRequest(sortDescriptors: []) private var users: FetchedResults<User>
+    @EnvironmentObject var productVM: ProductViewModel
     @Binding var mail: String
     @Binding var username: String
     @Binding var birthdate: Date
@@ -38,7 +38,8 @@ struct RegisterButton: View {
     }
     
     func register() {
-        switch PersistenceController.shared.addUser(
+        userVM.fetchUsers(viewContext: viewContext)
+        switch userVM.addUser(
             mail: mail,
             username: username,
             password: password,
@@ -52,20 +53,11 @@ struct RegisterButton: View {
         case .successCustomer:
             appVM.invalidFields = false
             appVM.loading()
-            userVM.user = PersistenceController.shared.fetchUser(
-                users: users,
-                username: username,
-                password: password
-            )
+            productVM.fetchProducts(viewContext: viewContext)
             appVM.loginCustomer()
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
-            userVM.user = PersistenceController.shared.fetchUser(
-                users: users,
-                username: username,
-                password: password
-            )
             appVM.loginSeller()
         }
     }

@@ -31,14 +31,6 @@ class AppViewModel: ObservableObject {
         set { appData.isLoggedIn = newValue }
     }
     
-    var managementButtons: [String] {
-        appData.managementButtons
-    }
-    
-    var managementViews: [any View] {
-        appData.managementViews
-    }
-    
     func loading() {
         withAnimation {
             self.appData.loading()

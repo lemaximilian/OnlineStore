@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TopProducts: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)]) private var products: FetchedResults<Product>
-    @State var imageArray: [Data] = []
+    @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var productVM: ProductViewModel
     var title: String
     
     var body: some View {
@@ -17,9 +17,9 @@ struct TopProducts: View {
             .font(.title2)
         
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-            ForEach(products) { product in
-                NavigationLink(destination: ProductPage(currentProduct: product, imageArray: PersistenceController.shared.fetchProductImages(product: product))) {
-                    ProductRectangle(title: product.title, image: PersistenceController.shared.fetchProductImages(product: product).first)
+            ForEach(productVM.products) { product in
+                NavigationLink(destination: ProductPage(currentProduct: product, imageArray: productVM.fetchProductImages(product: product, viewContext: viewContext))) {
+                    ProductRectangle(title: product.title, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first)
                 }
                 .buttonStyle(.plain)
             }

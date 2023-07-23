@@ -21,21 +21,6 @@ struct AppData {
     // Current Login State
     var isLoggedIn: LoginState = .notLoggedIn
     
-    // Management View Captions
-    let managementButtons = [
-        "New Product", "plus",
-        "Edit Product", "pencil",
-        "Support Requests", "person.fill",
-        "Settings", "gearshape.fill"
-    ]
-    
-    let managementViews: [any View] = [
-        NewProduct(),
-        EditProduct(),
-        LogoutButton(),
-        LogoutButton()
-    ]
-    
     mutating func loading() {
         isLoading = true
     }

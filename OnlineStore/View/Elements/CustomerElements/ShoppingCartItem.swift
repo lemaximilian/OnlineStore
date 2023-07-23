@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShoppingCartItem: View {
-    var title: String
+    var product: Product
     
     var body: some View {
         ZStack {
@@ -20,7 +20,7 @@ struct ShoppingCartItem: View {
             
             VStack {
                 HStack {
-                    Text(title)
+                    Text(product.title ?? "Unknown Product")
                         .font(.title)
                         .bold()
                     Spacer()
@@ -39,7 +39,7 @@ struct ShoppingCartItem: View {
                 
                 HStack {
                     Spacer()
-                    Text("Price: ")
+                    Text("Price: \(product.price)")
                         .font(.title2)
                         .bold()
                 }

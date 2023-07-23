@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct CategoryPicker: View {
+    @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order)]) private var categories: FetchedResults<Category>
-    @Binding var selectedCategoryName: String
+    @State private var selectedCategoryName = "Smartphones"
     @Binding var selectedCategory: Category
     
     var body: some View {
         Picker("Category", selection: $selectedCategoryName) {
-            ForEach(categories, id: \.wrappedTitle) { category in
-                Text(category.wrappedTitle)
+            ForEach(categories, id: \.title) { category in
+                Text(category.title ?? "Unknown Category")
                     .onTapGesture {
                         selectedCategory = category
                     }
@@ -23,6 +24,9 @@ struct CategoryPicker: View {
         }
         .pickerStyle(.navigationLink)
         .padding()
+        .onAppear {
+            selectedCategory = categories.first ?? Category(context: viewContext)
+        }
     }
 }
 

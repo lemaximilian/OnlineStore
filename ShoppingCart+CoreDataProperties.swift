@@ -1,8 +1,8 @@
 //
-//  Category+CoreDataProperties.swift
+//  ShoppingCart+CoreDataProperties.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 21.07.23.
+//  Created by Maximilian Le on 06.07.23.
 //
 //
 
@@ -10,22 +10,20 @@ import Foundation
 import CoreData
 
 
-extension Category {
+extension ShoppingCart {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
-        return NSFetchRequest<Category>(entityName: "Category")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ShoppingCart> {
+        return NSFetchRequest<ShoppingCart>(entityName: "ShoppingCart")
     }
 
     @NSManaged public var id: UUID?
-    @NSManaged public var image: Data?
-    @NSManaged public var order: Int16
-    @NSManaged public var title: String?
-    @NSManaged public var product: Set<Product>
+    @NSManaged public var user: User?
+    @NSManaged public var product: NSSet?
 
 }
 
 // MARK: Generated accessors for product
-extension Category {
+extension ShoppingCart {
 
     @objc(addProductObject:)
     @NSManaged public func addToProduct(_ value: Product)
@@ -41,6 +39,6 @@ extension Category {
 
 }
 
-extension Category : Identifiable {
+extension ShoppingCart : Identifiable {
 
 }

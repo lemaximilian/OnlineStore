@@ -17,10 +17,15 @@ extension ShoppingCart {
     }
     
     @NSManaged public var id: UUID?
+    @NSManaged public var products: Data?
     @NSManaged public var user: User?
 
     public var wrappedId: UUID {
         id ?? UUID()
+    }
+    
+    public var wrappedProducts: Data {
+        products ?? Data()
     }
     
     public var wrappedUser: User {

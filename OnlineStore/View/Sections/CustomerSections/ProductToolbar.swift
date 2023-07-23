@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ProductToolbar: View {
+    @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var productVM: ProductViewModel
     @Binding var showAlert: Bool
     var currentProduct: Product
 
     var body: some View {
         HStack {
             Button {
+//                var shoppingCart: [Product] = []
+//                shoppingCart.append(currentProduct)
+                userVM.currentUser.shoppingCart.insert(currentProduct)
+                productVM.save(viewContext: viewContext)
+                userVM.save(viewContext: viewContext)
                 showAlert = true
             } label: {
                 HStack {
