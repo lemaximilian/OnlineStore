@@ -15,6 +15,10 @@ struct OnlineStoreApp: App {
     @StateObject private var product = ProductViewModel()
     let persistenceController = PersistenceController.shared
     
+    init() {
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

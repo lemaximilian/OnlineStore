@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ProductFields: View {
+    @EnvironmentObject var appVM: AppViewModel
     @Binding var title: String
     @Binding var price: Float
     @Binding var description: String
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
     
     var body: some View {
         TextField("Title", text: $title)
@@ -23,7 +19,7 @@ struct ProductFields: View {
             .padding()
         
         HStack {
-            TextField("Price", value: $price, formatter: formatter)
+            TextField("Price", value: $price, formatter: appVM.formatter)
                 .textFieldStyle(.roundedBorder)
                 .padding()
             Text("€")

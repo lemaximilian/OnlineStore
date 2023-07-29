@@ -31,6 +31,10 @@ class AppViewModel: ObservableObject {
         set { appData.isLoggedIn = newValue }
     }
     
+    var formatter: NumberFormatter {
+        appData.formatter
+    }
+    
     func loading() {
         withAnimation {
             self.appData.loading()

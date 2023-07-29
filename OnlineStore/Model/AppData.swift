@@ -21,6 +21,17 @@ struct AppData {
     // Current Login State
     var isLoggedIn: LoginState = .notLoggedIn
     
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = ""
+        formatter.zeroSymbol = ""
+        return formatter
+    }()
+    
     mutating func loading() {
         isLoading = true
     }

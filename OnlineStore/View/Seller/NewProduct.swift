@@ -12,7 +12,7 @@ struct NewProduct: View {
     @State private var title = ""
     @State private var price: Float = 0.0
     @State private var description = ""
-    @State private var selectedCategory = Category()
+    @State var selectedCategory: Category
     @State private var highlightArray: [String] = []
     @State private var imageArray: [Data?] = []
     
@@ -44,8 +44,3 @@ struct NewProduct: View {
     }
 }
 
-struct NewProduct_Previews: PreviewProvider {
-    static var previews: some View {
-        NewProduct()
-    }
-}

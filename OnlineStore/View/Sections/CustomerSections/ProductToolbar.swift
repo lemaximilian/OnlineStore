@@ -30,7 +30,7 @@ struct ProductToolbar: View {
                 }
             }
             .buttonStyle(.borderedProminent)
-            .padding(.top)
+            .padding(.vertical)
             .alert("Added to Shopping Cart", isPresented: $showAlert) {
                         Button("OK", role: .cancel) { }
             }
@@ -41,7 +41,7 @@ struct ProductToolbar: View {
                 Image(systemName: "heart")
             }
             .buttonStyle(.borderedProminent)
-            .padding(.top)
+            .padding(.vertical)
         }
     }
 }

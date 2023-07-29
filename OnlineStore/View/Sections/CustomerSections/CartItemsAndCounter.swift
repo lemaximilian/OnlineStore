@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CartItemsAndCounter: View {
+    @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
-    @State var showAlert = false
+    @EnvironmentObject var productVM: ProductViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -20,17 +22,31 @@ struct CartItemsAndCounter: View {
             .padding(.horizontal)
             
             ForEach(Array(userVM.currentUser.shoppingCart)) { product in
-                ShoppingCartItem(product: product)
+                ShoppingCartItem(product: product, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first ?? Data())
                 Divider()
+            }
+            
+            HStack {
+                Spacer()
+                Text("Total: \(appVM.formatter.string(from: NSNumber(value: calcTotalAmount())) ?? "")€")
+                    .font(.title)
+                    .bold()
             }
         }
         .navigationTitle("Shopping Cart")
-        .padding()
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                PurchaseButton(showAlert: $showAlert)
+                PurchaseButton()
             }
         }
+    }
+    
+    func calcTotalAmount() -> Float {
+        var total: Float = 0.0
+        for product in userVM.currentUser.shoppingCart {
+            total += product.price
+        }
+        return total
     }
 }
 

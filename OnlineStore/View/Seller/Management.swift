@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Management: View {
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.order)]) private var categories: FetchedResults<Category>
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @EnvironmentObject var appVM: AppViewModel
     
@@ -15,7 +16,7 @@ struct Management: View {
         NavigationStack {
             VStack {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    NavigationLink(destination: NewProduct()) {
+                    NavigationLink(destination: NewProduct(selectedCategory: categories.first ?? Category())) {
                         RectangleButton(title: "New Product", image: "plus")
                     }
                     .buttonStyle(.plain)

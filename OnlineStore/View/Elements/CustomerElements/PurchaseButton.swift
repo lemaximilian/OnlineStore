@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct PurchaseButton: View {
-    @Binding var showAlert: Bool
-    
     var body: some View {
-        Button {
-            showAlert = true
-        } label: {
+        NavigationLink(destination: Checkout()) {
             HStack {
                 Image(systemName: "eurosign")
                 Text("Purchase")
@@ -21,9 +17,19 @@ struct PurchaseButton: View {
         }
         .buttonStyle(.borderedProminent)
         .padding()
-        .alert("Purchased successfully!", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) { }
-        }
+//        Button {
+//            showAlert = true
+//        } label: {
+//            HStack {
+//                Image(systemName: "eurosign")
+//                Text("Purchase")
+//            }
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .padding()
+//        .alert("Purchased successfully!", isPresented: $showAlert) {
+//                    Button("OK", role: .cancel) { }
+//        }
     }
 }
 

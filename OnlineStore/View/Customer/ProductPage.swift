@@ -34,7 +34,7 @@ struct ProductPage: View {
             
         }
         .navigationTitle(currentProduct.title ?? "")
-        .padding()
+        .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 ProductToolbar(showAlert: $showAlert, currentProduct: currentProduct)

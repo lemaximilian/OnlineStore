@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct PriceText: View {
+    @EnvironmentObject var appVM: AppViewModel
     var price: Float
     
     var body: some View {
         HStack {
             Spacer()
-            Text(String(price) + "€")
+            Text("Price: \(appVM.formatter.string(from: NSNumber(value: price)) ?? "")€")
                 .font(.title2)
                 .bold()
         }

@@ -21,7 +21,7 @@ struct ProductPhoto: View {
                     HStack {
                         Text("Add Image")
                                                 
-                        Image(systemName: "photos")
+                        Image(systemName: "photo")
                     }
                 }
                 .onChange(of: selectedItem) { newItem in

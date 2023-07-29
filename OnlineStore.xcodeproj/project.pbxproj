@@ -39,6 +39,7 @@
 		8966C4102A6A69D300004358 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4092A6A69D300004358 /* User+CoreDataProperties.swift */; };
 		8966C4142A6A6A2C00004358 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4132A6A6A2C00004358 /* Product+CoreDataProperties.swift */; };
 		8966C4182A6A6AE800004358 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4172A6A6AE800004358 /* Product+CoreDataClass.swift */; };
+		8966C41A2A71653700004358 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4192A71653700004358 /* Checkout.swift */; };
 		898F1FCC2A55BF56007CC4B7 /* DeleteUsersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FCB2A55BF56007CC4B7 /* DeleteUsersButton.swift */; };
 		898F1FD22A55BFC2007CC4B7 /* ExistingAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FD12A55BFC2007CC4B7 /* ExistingAccountButton.swift */; };
 		898F1FD42A55BFF1007CC4B7 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FD32A55BFF1007CC4B7 /* LoginButton.swift */; };
@@ -116,6 +117,7 @@
 		8966C4092A6A69D300004358 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8966C4132A6A6A2C00004358 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Product+CoreDataProperties.swift"; path = "../../../Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8966C4172A6A6AE800004358 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8966C4192A71653700004358 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		898F1FCB2A55BF56007CC4B7 /* DeleteUsersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUsersButton.swift; sourceTree = "<group>"; };
 		898F1FD12A55BFC2007CC4B7 /* ExistingAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingAccountButton.swift; sourceTree = "<group>"; };
 		898F1FD32A55BFF1007CC4B7 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				895E7C492A39E5350024956E /* CategoryPage.swift */,
 				895E7C4B2A39E5410024956E /* ProductPage.swift */,
 				890BE6BD2A2750D9009D04C8 /* Settings.swift */,
+				8966C4192A71653700004358 /* Checkout.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				89E9719D2A51E95D00699258 /* CartItemsAndCounter.swift in Sources */,
 				890BE6B02A1F6976009D04C8 /* OnlineStore.xcdatamodeld in Sources */,
 				898F1FCC2A55BF56007CC4B7 /* DeleteUsersButton.swift in Sources */,
+				8966C41A2A71653700004358 /* Checkout.swift in Sources */,
 				890BE6D22A35D501009D04C8 /* RectangleButton.swift in Sources */,
 				89E971A52A51EC9C00699258 /* PriceText.swift in Sources */,
 				89E9717A2A4D7E0F00699258 /* Validation.swift in Sources */,
