@@ -80,7 +80,7 @@ class UserViewModel: ObservableObject {
     func save(viewContext: NSManagedObjectContext) {
         users.removeAll()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.controller.save(viewContext: viewContext)
             self.fetchUsers(viewContext: viewContext)
         }

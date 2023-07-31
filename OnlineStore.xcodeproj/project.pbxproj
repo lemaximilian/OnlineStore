@@ -40,6 +40,8 @@
 		8966C4142A6A6A2C00004358 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4132A6A6A2C00004358 /* Product+CoreDataProperties.swift */; };
 		8966C4182A6A6AE800004358 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4172A6A6AE800004358 /* Product+CoreDataClass.swift */; };
 		8966C41A2A71653700004358 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C4192A71653700004358 /* Checkout.swift */; };
+		8966C41E2A77F8E800004358 /* CheckoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C41D2A77F8E700004358 /* CheckoutItem.swift */; };
+		8966C4202A78032D00004358 /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966C41F2A78032C00004358 /* CheckoutButton.swift */; };
 		898F1FCC2A55BF56007CC4B7 /* DeleteUsersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FCB2A55BF56007CC4B7 /* DeleteUsersButton.swift */; };
 		898F1FD22A55BFC2007CC4B7 /* ExistingAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FD12A55BFC2007CC4B7 /* ExistingAccountButton.swift */; };
 		898F1FD42A55BFF1007CC4B7 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898F1FD32A55BFF1007CC4B7 /* LoginButton.swift */; };
@@ -118,6 +120,8 @@
 		8966C4132A6A6A2C00004358 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Product+CoreDataProperties.swift"; path = "../../../Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8966C4172A6A6AE800004358 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8966C4192A71653700004358 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
+		8966C41D2A77F8E700004358 /* CheckoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutItem.swift; sourceTree = "<group>"; };
+		8966C41F2A78032C00004358 /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
 		898F1FCB2A55BF56007CC4B7 /* DeleteUsersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUsersButton.swift; sourceTree = "<group>"; };
 		898F1FD12A55BFC2007CC4B7 /* ExistingAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingAccountButton.swift; sourceTree = "<group>"; };
 		898F1FD32A55BFF1007CC4B7 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		898F1FBF2A55BD21007CC4B7 /* CustomerElements */ = {
 			isa = PBXGroup;
 			children = (
+				8966C41F2A78032C00004358 /* CheckoutButton.swift */,
+				8966C41D2A77F8E700004358 /* CheckoutItem.swift */,
 				89E971A22A51EC4400699258 /* ProductImages.swift */,
 				89E971982A51E8AB00699258 /* PurchaseButton.swift */,
 				890BE6C52A276367009D04C8 /* ProductRectangle.swift */,
@@ -508,6 +514,7 @@
 				898F1FD82A55C03C007CC4B7 /* NoAccountButton.swift in Sources */,
 				89A5961B2A548EB600ADDFEC /* ProductPhoto.swift in Sources */,
 				89E971B02A51F0B900699258 /* HomeTab.swift in Sources */,
+				8966C41E2A77F8E800004358 /* CheckoutItem.swift in Sources */,
 				89E971A12A51EBCB00699258 /* ProductGrid.swift in Sources */,
 				890BE6B22A1F9529009D04C8 /* Placeholder.swift in Sources */,
 				890BE6C42A275149009D04C8 /* TabController.swift in Sources */,
@@ -563,6 +570,7 @@
 				890BE6B82A274D31009D04C8 /* Home.swift in Sources */,
 				89E971832A4DDB9E00699258 /* UserViewModel.swift in Sources */,
 				89E9717C2A4D976800699258 /* LoginState.swift in Sources */,
+				8966C4202A78032D00004358 /* CheckoutButton.swift in Sources */,
 				89E971A72A51ECEC00699258 /* ProductDescription.swift in Sources */,
 				8911A3452A3B4578000B8269 /* Login.swift in Sources */,
 				89A596192A548DE800ADDFEC /* CategoryPicker.swift in Sources */,

@@ -15,9 +15,12 @@ struct LoginFields: View {
     
     var body: some View {
         // Title
-        Text("Login")
-            .font(.title)
-            .bold()
+        HStack {
+            Text("Login")
+                .font(.title)
+                .bold()
+            Image(systemName: "person.fill")
+        }
         
         // User Inputs
         TextField("Username", text: $username)
