@@ -7,6 +7,15 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="product" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="category" inverseEntity="Product"/>
     </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="payment" optional="YES" attributeType="String"/>
+        <attribute name="purchaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="shipping" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="order" inverseEntity="Product"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="orders" inverseEntity="User"/>
+    </entity>
     <entity name="Product" representedClassName="Product" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="highlights" optional="YES" attributeType="Binary"/>
@@ -15,6 +24,7 @@
         <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="product" inverseEntity="Category"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="products" inverseEntity="Order"/>
         <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Review" inverseName="product" inverseEntity="Review"/>
         <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="shoppingCart" inverseEntity="User"/>
     </entity>
@@ -32,6 +42,7 @@
         <attribute name="mail" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="user" inverseEntity="Order"/>
         <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Review" inverseName="user" inverseEntity="Review"/>
         <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="shoppingCart" inverseEntity="Product"/>
     </entity>
@@ -40,5 +51,6 @@
         <memberEntity name="Review"/>
         <memberEntity name="Product"/>
         <memberEntity name="Category"/>
+        <memberEntity name="Order"/>
     </configuration>
 </model>

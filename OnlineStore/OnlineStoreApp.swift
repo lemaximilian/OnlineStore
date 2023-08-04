@@ -13,6 +13,7 @@ struct OnlineStoreApp: App {
     @StateObject private var appData = AppViewModel()
     @StateObject private var user = UserViewModel()
     @StateObject private var product = ProductViewModel()
+    @StateObject private var order = OrderViewModel()
     let persistenceController = PersistenceController.shared
     
     init() {
@@ -27,6 +28,7 @@ struct OnlineStoreApp: App {
                 .environmentObject(appData)
                 .environmentObject(user)
                 .environmentObject(product)
+                .environmentObject(order)
         }
     }
 }

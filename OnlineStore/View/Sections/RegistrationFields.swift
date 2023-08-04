@@ -15,29 +15,32 @@ struct RegistrationFields: View {
     @Binding var isSeller: Bool
     
     var body: some View {
-            // Title
+        // Title
+        HStack {
             Text("Registration")
                 .font(.title)
                 .bold()
+            Image(systemName: "person.fill.badge.plus")
+        }
             
-            // User Inputs
-            TextField("E-Mail Address", text: $mail)
-                .textFieldStyle(.roundedBorder)
-                .padding()
+        // User Inputs
+        TextField("E-Mail Address", text: $mail)
+            .textFieldStyle(.roundedBorder)
+            .padding()
             
-            TextField("Username", text: $username)
-                .textFieldStyle(.roundedBorder)
-                .padding()
+        TextField("Username", text: $username)
+            .textFieldStyle(.roundedBorder)
+            .padding()
             
-            SecureField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
-                .padding()
+        SecureField("Password", text: $password)
+            .textFieldStyle(.roundedBorder)
+            .padding()
             
-            DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
-                .padding()
+        DatePicker("Enter your Birthdate:", selection: $birthdate, displayedComponents: .date)
+            .padding()
             
-            Toggle("Seller Account", isOn: $isSeller)
-                .padding()
+        Toggle("Seller Account", isOn: $isSeller)
+            .padding()
     }
 }
 

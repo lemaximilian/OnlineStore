@@ -28,7 +28,7 @@ struct CartItemsAndCounter: View {
             
             HStack {
                 Spacer()
-                Text("Total: \(appVM.formatter.string(from: NSNumber(value: calcTotalAmount())) ?? "")€")
+                Text("Total: \(appVM.numberFormatter.string(from: NSNumber(value: calcTotalAmount())) ?? "")€")
                     .font(.title)
                     .bold()
             }
@@ -36,7 +36,7 @@ struct CartItemsAndCounter: View {
         .navigationTitle("Shopping Cart")
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                PurchaseButton()
+                CheckoutButton()
             }
         }
     }

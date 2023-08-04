@@ -21,7 +21,7 @@ struct AppData {
     // Current Login State
     var isLoggedIn: LoginState = .notLoggedIn
     
-    let formatter: NumberFormatter = {
+    let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -29,6 +29,13 @@ struct AppData {
         formatter.decimalSeparator = ","
         formatter.groupingSeparator = ""
         formatter.zeroSymbol = ""
+        return formatter
+    }()
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
         return formatter
     }()
     

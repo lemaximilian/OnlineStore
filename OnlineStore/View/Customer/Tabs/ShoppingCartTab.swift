@@ -10,7 +10,7 @@ import SwiftUI
 struct ShoppingCartTab: View {
     var body: some View {
         NavigationStack {
-            ShoppingCartView()
+            ShoppingCartPicker()
         }
         .tabItem {
             Image(systemName: "cart")

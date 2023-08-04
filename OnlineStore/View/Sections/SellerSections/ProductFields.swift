@@ -19,7 +19,7 @@ struct ProductFields: View {
             .padding()
         
         HStack {
-            TextField("Price", value: $price, formatter: appVM.formatter)
+            TextField("Price", value: $price, formatter: appVM.numberFormatter)
                 .textFieldStyle(.roundedBorder)
                 .padding()
             Text("€")

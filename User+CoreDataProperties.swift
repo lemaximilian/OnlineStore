@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 21.07.23.
+//  Created by Maximilian Le on 02.08.23.
 //
 //
 
@@ -22,17 +22,27 @@ extension User {
     @NSManaged public var mail: String?
     @NSManaged public var password: String?
     @NSManaged public var username: String?
+    @NSManaged public var orders: Set<Order>
     @NSManaged public var review: Set<Review>
     @NSManaged public var shoppingCart: Set<Product>
-    @NSManaged public var orders: Set<Order>
 
-//    public var shoppingCartArray: [Product] {
-//        let set = shoppingCart as? Set<Product> ?? []
-//        return set.sorted {
-//            $0.id < $1.id
-//        }
-//    }
-    
+}
+
+// MARK: Generated accessors for orders
+extension User {
+
+    @objc(addOrdersObject:)
+    @NSManaged public func addToOrders(_ value: Order)
+
+    @objc(removeOrdersObject:)
+    @NSManaged public func removeFromOrders(_ value: Order)
+
+    @objc(addOrders:)
+    @NSManaged public func addToOrders(_ values: NSSet)
+
+    @objc(removeOrders:)
+    @NSManaged public func removeFromOrders(_ values: NSSet)
+
 }
 
 // MARK: Generated accessors for review

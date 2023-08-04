@@ -52,7 +52,7 @@ struct ShoppingCartItem: View {
                 
                 HStack {
                     Spacer()
-                    Text("Price: \(appVM.formatter.string(from: NSNumber(value: product.price)) ?? "")€")
+                    Text("Price: \(appVM.numberFormatter.string(from: NSNumber(value: product.price)) ?? "")€")
                         .font(.title2)
                         .bold()
                 }

@@ -39,7 +39,7 @@ struct CheckoutItem: View {
                     }
                     
                     HStack {
-                        Text("Price: \(appVM.formatter.string(from: NSNumber(value: product.price)) ?? "")€")
+                        Text("Price: \(appVM.numberFormatter.string(from: NSNumber(value: product.price)) ?? "")€")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         Spacer()
