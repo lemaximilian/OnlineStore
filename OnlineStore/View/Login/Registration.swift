@@ -42,10 +42,3 @@ struct Registration: View {
         .padding()
     }
 }
-
-struct Registration_Previews: PreviewProvider {
-    static var previews: some View {
-        Registration()
-            .environmentObject(AppViewModel())
-    }
-}

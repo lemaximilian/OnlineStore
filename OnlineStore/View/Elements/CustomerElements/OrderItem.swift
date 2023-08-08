@@ -40,6 +40,15 @@ struct OrderItem: View {
                 }
                 .padding(.horizontal)
                 
+                HStack {
+                    Text("Shipping:")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(order.shipping == "Standard" ? "0" : "4,99")€")
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal)
+                
                 Divider()
                     .padding(.horizontal)
                 
@@ -48,7 +57,7 @@ struct OrderItem: View {
                         .font(.title3)
                         .bold()
                     Spacer()
-                    Text("\(appVM.numberFormatter.string(from: NSNumber(value: calcTotalAmount(order: order))) ?? "")€")
+                    Text("\(appVM.numberFormatter.string(from: NSNumber(value: order.total)) ?? "")€")
                         .font(.title3)
                         .bold()
                 }

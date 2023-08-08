@@ -21,9 +21,3 @@ struct TabController: View {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabController()
-            .environmentObject(PlaceholderViewModel())
-    }
-}
