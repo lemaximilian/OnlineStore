@@ -35,7 +35,7 @@ extension Category {
 
     @objc(addProduct:)
     @NSManaged public func addToProduct(_ values: NSSet)
-
+ 
     @objc(removeProduct:)
     @NSManaged public func removeFromProduct(_ values: NSSet)
 

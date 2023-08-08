@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Login: View {
     @EnvironmentObject var appVM: AppViewModel
+    @EnvironmentObject var notificationVM: NotificationViewModel
     @State private var username = ""
     @State private var password = ""
     @State private var startAnimation = false
@@ -36,6 +37,9 @@ struct Login: View {
             .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))
             .padding()
             .transition(.move(edge: .trailing))
+        }
+        .onAppear {
+            notificationVM.requestPermissions()
         }
     }
 }

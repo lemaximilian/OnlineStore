@@ -66,6 +66,7 @@
 		89BF1FB82A7D2D8000779C30 /* ShoppingCartPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FB72A7D2D8000779C30 /* ShoppingCartPicker.swift */; };
 		89BF1FBA2A7D2EC800779C30 /* OrderItemsAndCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FB92A7D2EC800779C30 /* OrderItemsAndCounter.swift */; };
 		89BF1FC02A7D436A00779C30 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FBF2A7D436A00779C30 /* OrderItem.swift */; };
+		89BF1FC22A7D691A00779C30 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */; };
 		89E971742A4B0EF500699258 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971732A4B0EF500699258 /* AppData.swift */; };
 		89E971762A4B0F2800699258 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971752A4B0F2800699258 /* AppViewModel.swift */; };
 		89E971782A4C1C6B00699258 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E971772A4C1C6B00699258 /* LoadingOverlay.swift */; };
@@ -157,6 +158,7 @@
 		89BF1FB72A7D2D8000779C30 /* ShoppingCartPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartPicker.swift; sourceTree = "<group>"; };
 		89BF1FB92A7D2EC800779C30 /* OrderItemsAndCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsAndCounter.swift; sourceTree = "<group>"; };
 		89BF1FBF2A7D436A00779C30 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		89E971732A4B0EF500699258 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		89E971752A4B0F2800699258 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		89E971772A4C1C6B00699258 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				89E971822A4DDB9E00699258 /* UserViewModel.swift */,
 				8966C4012A67790F00004358 /* ProductViewModel.swift */,
 				89BF1FB12A7A821C00779C30 /* OrderViewModel.swift */,
+				89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */,
 				89E971752A4B0F2800699258 /* AppViewModel.swift */,
 			);
 			path = ViewModel;
@@ -569,6 +572,7 @@
 				890BE6BE2A2750D9009D04C8 /* Settings.swift in Sources */,
 				89BF1FB62A7D29C700779C30 /* EmptyOrder.swift in Sources */,
 				8966C40F2A6A69D300004358 /* User+CoreDataClass.swift in Sources */,
+				89BF1FC22A7D691A00779C30 /* NotificationViewModel.swift in Sources */,
 				89E971BA2A52DE7900699258 /* NewCategory.swift in Sources */,
 				898F1FD22A55BFC2007CC4B7 /* ExistingAccountButton.swift in Sources */,
 				89E971782A4C1C6B00699258 /* LoadingOverlay.swift in Sources */,
@@ -754,7 +758,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = THKoeln.OnlineStore;
+				PRODUCT_BUNDLE_IDENTIFIER = THKoeln.Store;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -786,7 +790,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = THKoeln.OnlineStore;
+				PRODUCT_BUNDLE_IDENTIFIER = THKoeln.Store;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_EMIT_LOC_STRINGS = YES;

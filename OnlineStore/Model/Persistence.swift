@@ -11,7 +11,7 @@ import CloudKit
 
 class PersistenceController {
     static let shared = PersistenceController()
-    let database = CKContainer.default().publicCloudDatabase
+    let database = CKContainer(identifier: "iCloud.THKoeln.Store").publicCloudDatabase
 
     static var preview: PersistenceController = {
             let result = PersistenceController(inMemory: true)
@@ -56,15 +56,14 @@ class PersistenceController {
             }
         })
         
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        
         do {
             try container.initializeCloudKitSchema()
         } catch let error {
             print(error)
         }
         
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
     }
     
     func save(viewContext: NSManagedObjectContext) {

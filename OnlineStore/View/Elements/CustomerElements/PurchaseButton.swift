@@ -10,6 +10,7 @@ import SwiftUI
 struct PurchaseButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var orderVM: OrderViewModel
+    @EnvironmentObject var notificationVM: NotificationViewModel
     @State var showAlert: Bool = false
     var total: Float
     var shipping: String
@@ -42,7 +43,9 @@ struct PurchaseButton: View {
         .buttonStyle(.borderedProminent)
         .padding()
         .alert("Purchased successfully!", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) { }
+                    Button("OK", role: .cancel) {
+                        notificationVM.unsubscribeNotification()
+                    }
         }
         
     }
