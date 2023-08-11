@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CheckoutButton: View {
     @EnvironmentObject var notificationVM: NotificationViewModel
-    @State var showingPopover: Bool = false
+    @State var showPopover: Bool = false
     
     var body: some View {
         Button {
             notificationVM.subscribeNotifications()
-            showingPopover = true
+            showPopover = true
         } label: {
             HStack {
                 Image(systemName: "bag.fill")
@@ -23,8 +23,8 @@ struct CheckoutButton: View {
         }
         .buttonStyle(.borderedProminent)
         .padding()
-        .popover(isPresented: $showingPopover) {
-            Checkout(showingPopover: $showingPopover)
+        .popover(isPresented: $showPopover) {
+            Checkout(showPopover: $showPopover)
         }
 //        Button {
 //            showAlert = true

@@ -12,6 +12,7 @@ struct PurchaseButton: View {
     @EnvironmentObject var orderVM: OrderViewModel
     @EnvironmentObject var notificationVM: NotificationViewModel
     @State var showAlert: Bool = false
+    @Binding var showPopover: Bool
     var total: Float
     var shipping: String
     var payment: String
@@ -45,6 +46,7 @@ struct PurchaseButton: View {
         .alert("Purchased successfully!", isPresented: $showAlert) {
                     Button("OK", role: .cancel) {
                         notificationVM.unsubscribeNotification()
+                        showPopover = false
                     }
         }
         
