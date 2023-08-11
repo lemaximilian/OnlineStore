@@ -38,6 +38,10 @@
 		895947F22A82821600B70E83 /* ShoppingCartItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947F12A82821600B70E83 /* ShoppingCartItemList.swift */; };
 		895947F42A8282A900B70E83 /* OrderCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947F32A8282A900B70E83 /* OrderCounter.swift */; };
 		895947F62A8282F500B70E83 /* OrderItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947F52A8282F500B70E83 /* OrderItemList.swift */; };
+		895947F82A83DF7B00B70E83 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947F72A83DF7B00B70E83 /* ReviewViewModel.swift */; };
+		895947FA2A83E1C700B70E83 /* AddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947F92A83E1C700B70E83 /* AddReview.swift */; };
+		895947FC2A841FBB00B70E83 /* ReviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947FB2A841FBB00B70E83 /* ReviewItem.swift */; };
+		895947FE2A8530B900B70E83 /* EmptyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895947FD2A8530B900B70E83 /* EmptyCategory.swift */; };
 		895E7C452A3752D10024956E /* EditProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E7C442A3752D10024956E /* EditProduct.swift */; };
 		895E7C4A2A39E5350024956E /* CategoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E7C492A39E5350024956E /* CategoryPage.swift */; };
 		895E7C4C2A39E5410024956E /* ProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E7C4B2A39E5410024956E /* ProductPage.swift */; };
@@ -140,6 +144,10 @@
 		895947F12A82821600B70E83 /* ShoppingCartItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartItemList.swift; sourceTree = "<group>"; };
 		895947F32A8282A900B70E83 /* OrderCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCounter.swift; sourceTree = "<group>"; };
 		895947F52A8282F500B70E83 /* OrderItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemList.swift; sourceTree = "<group>"; };
+		895947F72A83DF7B00B70E83 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		895947F92A83E1C700B70E83 /* AddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReview.swift; sourceTree = "<group>"; };
+		895947FB2A841FBB00B70E83 /* ReviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItem.swift; sourceTree = "<group>"; };
+		895947FD2A8530B900B70E83 /* EmptyCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCategory.swift; sourceTree = "<group>"; };
 		895E7C442A3752D10024956E /* EditProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProduct.swift; sourceTree = "<group>"; };
 		895E7C492A39E5350024956E /* CategoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPage.swift; sourceTree = "<group>"; };
 		895E7C4B2A39E5410024956E /* ProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPage.swift; sourceTree = "<group>"; };
@@ -257,6 +265,7 @@
 				89E971822A4DDB9E00699258 /* UserViewModel.swift */,
 				8966C4012A67790F00004358 /* ProductViewModel.swift */,
 				89BF1FB12A7A821C00779C30 /* OrderViewModel.swift */,
+				895947F72A83DF7B00B70E83 /* ReviewViewModel.swift */,
 				89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */,
 				89E971752A4B0F2800699258 /* AppViewModel.swift */,
 			);
@@ -297,6 +306,7 @@
 				89E971A62A51ECEC00699258 /* ProductDescription.swift */,
 				89E971A82A51ED8E00699258 /* ProductHighlights.swift */,
 				89E971AA2A51EDCD00699258 /* ProductReviews.swift */,
+				895947FB2A841FBB00B70E83 /* ReviewItem.swift */,
 				89E9719C2A51E95D00699258 /* CartItemsAndCounter.swift */,
 				895947F12A82821600B70E83 /* ShoppingCartItemList.swift */,
 				89BF1FB92A7D2EC800779C30 /* OrderItemsAndCounter.swift */,
@@ -338,6 +348,7 @@
 				89BF1FBF2A7D436A00779C30 /* OrderItem.swift */,
 				89E9719A2A51E8FF00699258 /* EmptyCart.swift */,
 				89BF1FB52A7D29C700779C30 /* EmptyOrder.swift */,
+				895947FD2A8530B900B70E83 /* EmptyCategory.swift */,
 				89E971A42A51EC9C00699258 /* PriceText.swift */,
 			);
 			path = CustomerElements;
@@ -450,6 +461,7 @@
 				890BE6BF2A2750E3009D04C8 /* Categories.swift */,
 				895E7C492A39E5350024956E /* CategoryPage.swift */,
 				895E7C4B2A39E5410024956E /* ProductPage.swift */,
+				895947F92A83E1C700B70E83 /* AddReview.swift */,
 				890BE6BD2A2750D9009D04C8 /* Settings.swift */,
 				8966C4192A71653700004358 /* Checkout.swift */,
 			);
@@ -590,9 +602,11 @@
 				89E971A12A51EBCB00699258 /* ProductGrid.swift in Sources */,
 				89BF1FAC2A7A7E2A00779C30 /* Product+CoreDataProperties.swift in Sources */,
 				890BE6B22A1F9529009D04C8 /* Placeholder.swift in Sources */,
+				895947FA2A83E1C700B70E83 /* AddReview.swift in Sources */,
 				890BE6C42A275149009D04C8 /* TabController.swift in Sources */,
 				89BF1FAF2A7A7E2A00779C30 /* Order+CoreDataClass.swift in Sources */,
 				895947E02A82717B00B70E83 /* InvoiceFields.swift in Sources */,
+				895947FC2A841FBB00B70E83 /* ReviewItem.swift in Sources */,
 				898F1FD42A55BFF1007CC4B7 /* LoginButton.swift in Sources */,
 				89E971A92A51ED8E00699258 /* ProductHighlights.swift in Sources */,
 				89E9719B2A51E8FF00699258 /* EmptyCart.swift in Sources */,
@@ -642,6 +656,7 @@
 				890BE6B02A1F6976009D04C8 /* OnlineStore.xcdatamodeld in Sources */,
 				898F1FCC2A55BF56007CC4B7 /* DeleteUsersButton.swift in Sources */,
 				8966C41A2A71653700004358 /* Checkout.swift in Sources */,
+				895947F82A83DF7B00B70E83 /* ReviewViewModel.swift in Sources */,
 				890BE6D22A35D501009D04C8 /* RectangleButton.swift in Sources */,
 				89E971A52A51EC9C00699258 /* PriceText.swift in Sources */,
 				89E9717A2A4D7E0F00699258 /* Validation.swift in Sources */,
@@ -660,6 +675,7 @@
 				89E971A72A51ECEC00699258 /* ProductDescription.swift in Sources */,
 				8911A3452A3B4578000B8269 /* Login.swift in Sources */,
 				89A596192A548DE800ADDFEC /* CategoryPicker.swift in Sources */,
+				895947FE2A8530B900B70E83 /* EmptyCategory.swift in Sources */,
 				89BECF592A1F5DD700BD0034 /* OnlineStoreApp.swift in Sources */,
 				890BE6C62A276367009D04C8 /* ProductRectangle.swift in Sources */,
 				895E7C452A3752D10024956E /* EditProduct.swift in Sources */,

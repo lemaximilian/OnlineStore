@@ -18,7 +18,7 @@ extension Category {
 
     @NSManaged public var id: UUID?
     @NSManaged public var image: Data?
-    @NSManaged public var order: Int16
+    @NSManaged public var order: Int
     @NSManaged public var title: String?
     @NSManaged public var product: Set<Product>
 

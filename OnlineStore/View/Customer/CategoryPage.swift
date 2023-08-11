@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct CategoryPage: View {
+    let category: Category
+    
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            ProductGrid()
-        }
-        .navigationTitle("Category")
-        .padding()
+        ProductGrid(category: category)
+            .navigationTitle(category.title ?? "Unknown Category")
+            .padding()
     }
 }
 
-struct CategoryPage_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryPage()
-    }
-}

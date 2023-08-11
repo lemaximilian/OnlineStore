@@ -14,7 +14,7 @@ struct RegisterButton: View {
     @EnvironmentObject var productVM: ProductViewModel
     @Binding var mail: String
     @Binding var username: String
-    @Binding var birthdate: Date
+    @Binding var birthDate: Date
     @Binding var password: String
     @Binding var isSeller: Bool
     
@@ -43,7 +43,7 @@ struct RegisterButton: View {
             mail: mail,
             username: username,
             password: password,
-            birthdate: birthdate,
+            birthDate: birthDate,
             isSeller: isSeller,
             viewContext: viewContext
         ) {

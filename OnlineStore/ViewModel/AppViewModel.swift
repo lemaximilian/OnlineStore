@@ -46,7 +46,7 @@ class AppViewModel: ObservableObject {
     }
     
     func loginCustomer() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
                 self.appData.loginCustomer()
                 self.appData.stopLoading()
@@ -55,7 +55,7 @@ class AppViewModel: ObservableObject {
     }
     
     func loginSeller() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
                 self.appData.loginSeller()
                 self.appData.stopLoading()
@@ -64,7 +64,7 @@ class AppViewModel: ObservableObject {
     }
     
     func logout() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
                 self.appData.logout()
                 self.appData.stopLoading()

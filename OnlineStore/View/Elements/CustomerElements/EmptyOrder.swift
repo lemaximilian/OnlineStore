@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmptyOrder: View {
     var body: some View {
-        Text("There are no placed Orders")
+        Text("There are no placed orders")
             .navigationTitle("Orders")
             .padding()
     }

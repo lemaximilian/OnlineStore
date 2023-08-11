@@ -11,15 +11,23 @@ struct ProductGrid: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var productVM: ProductViewModel
     @State var imageArray: [Data] = []
+    let category: Category
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-            ForEach(productVM.products) { product in
-                NavigationLink(destination: ProductPage(currentProduct: product, imageArray: productVM.fetchProductImages(product: product, viewContext: viewContext))) {
-                    ProductRectangle(title: product.title, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first)
+        if category.product.isEmpty {
+            EmptyCategory()
+        } else {
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                    ForEach(Array(category.product)) { product in
+                        NavigationLink(destination: ProductPage(currentProduct: product, imageArray: productVM.fetchProductImages(product: product, viewContext: viewContext))) {
+                            ProductRectangle(title: product.title, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first)
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
-                .buttonStyle(.plain)
             }
+            
         }
     }
 }

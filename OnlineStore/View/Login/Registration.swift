@@ -11,7 +11,7 @@ struct Registration: View {
     @EnvironmentObject var appVM: AppViewModel
     @State private var mail = ""
     @State private var username = ""
-    @State private var birthdate = Date()
+    @State private var birthDate = Date()
     @State private var password = ""
     @State private var isSeller = false
     
@@ -21,10 +21,10 @@ struct Registration: View {
             Spacer()
             
             // User Input
-            RegistrationFields(mail: $mail, username: $username, birthdate: $birthdate, password: $password, isSeller: $isSeller)
+            RegistrationFields(mail: $mail, username: $username, birthDate: $birthDate, password: $password, isSeller: $isSeller)
         
             // Button to Register
-            RegisterButton(mail: $mail, username: $username, birthdate: $birthdate, password: $password, isSeller: $isSeller)
+            RegisterButton(mail: $mail, username: $username, birthDate: $birthDate, password: $password, isSeller: $isSeller)
             
             // Button to delete all Users (testing purposes)
             DeleteUsersButton()

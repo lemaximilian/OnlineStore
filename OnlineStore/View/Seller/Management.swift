@@ -26,8 +26,18 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
+                    NavigationLink(destination: EditProduct()) {
+                        RectangleButton(title: "User Management", image: "person.fill")
+                    }
+                    .buttonStyle(.plain)
+                    
                     NavigationLink(destination: NewCategory()) {
-                        RectangleButton(title: "Support Requests", image: "person.fill")
+                        RectangleButton(title: "New Category", image: "bag.fill.badge.plus")
+                    }
+                    .buttonStyle(.plain)
+                    
+                    NavigationLink(destination: NewCategory()) {
+                        RectangleButton(title: "Support Requests", image: "person.fill.questionmark")
                     }
                     .buttonStyle(.plain)
                     
@@ -46,9 +56,3 @@ struct Management: View {
     }
 }
 
-struct Management_Previews: PreviewProvider {
-    static var previews: some View {
-        Management()
-            .environmentObject(PlaceholderViewModel())
-    }
-}

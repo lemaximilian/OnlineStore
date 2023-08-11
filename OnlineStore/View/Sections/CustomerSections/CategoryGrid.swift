@@ -14,7 +14,7 @@ struct CategoryGrid: View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
                 ForEach(categories) { category in
-                    NavigationLink(destination: CategoryPage()) {
+                    NavigationLink(destination: CategoryPage(category: category)) {
                         ProductRound(title: category.title, image: category.image)
                     }
                     .buttonStyle(.plain)

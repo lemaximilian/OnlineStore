@@ -30,7 +30,7 @@ struct ProductPage: View {
             
             ProductHighlights(highlightArray: productVM.fetchProductHighlights(product: currentProduct, viewContext: viewContext))
             
-            ProductReviews()
+            ProductReviews(currentProduct: currentProduct)
             
         }
         .navigationTitle(currentProduct.title ?? "")

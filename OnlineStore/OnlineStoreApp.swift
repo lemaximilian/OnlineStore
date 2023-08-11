@@ -14,6 +14,7 @@ struct OnlineStoreApp: App {
     @StateObject private var user = UserViewModel()
     @StateObject private var product = ProductViewModel()
     @StateObject private var order = OrderViewModel()
+    @StateObject private var review = ReviewViewModel()
     @StateObject private var notification = NotificationViewModel()
     let persistenceController = PersistenceController.shared
     
@@ -30,6 +31,7 @@ struct OnlineStoreApp: App {
                 .environmentObject(user)
                 .environmentObject(product)
                 .environmentObject(order)
+                .environmentObject(review)
                 .environmentObject(notification)
         }
     }

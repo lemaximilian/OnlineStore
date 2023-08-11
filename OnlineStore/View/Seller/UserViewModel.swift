@@ -27,7 +27,7 @@ class UserViewModel: ObservableObject {
         mail: String,
         username: String,
         password: String,
-        birthdate: Date,
+        birthDate: Date,
         isSeller: Bool,
         viewContext: NSManagedObjectContext
     ) -> Validation {
@@ -40,7 +40,7 @@ class UserViewModel: ObservableObject {
             user.mail = mail
             user.username = username
             user.password = password
-            user.birthdate = birthdate
+            user.birthDate = birthDate
             user.isSeller = isSeller
             
             let reviews: [Review] = []

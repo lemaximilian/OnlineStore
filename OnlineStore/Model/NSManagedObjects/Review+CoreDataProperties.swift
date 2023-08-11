@@ -19,6 +19,8 @@ extension Review {
     @NSManaged public var comment: String?
     @NSManaged public var id: UUID?
     @NSManaged public var title: String?
+    @NSManaged public var rating: Int16
+    @NSManaged public var creationDate: Date?
     @NSManaged public var product: Product?
     @NSManaged public var user: User?
 

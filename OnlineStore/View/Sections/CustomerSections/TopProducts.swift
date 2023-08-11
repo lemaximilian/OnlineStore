@@ -17,7 +17,7 @@ struct TopProducts: View {
             .font(.title2)
         
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-            ForEach(productVM.products) { product in
+            ForEach(productVM.products, id: \.self) { product in
                 NavigationLink(destination: ProductPage(currentProduct: product, imageArray: productVM.fetchProductImages(product: product, viewContext: viewContext))) {
                     ProductRectangle(title: product.title, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first)
                 }
