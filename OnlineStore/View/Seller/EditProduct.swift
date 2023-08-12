@@ -8,28 +8,24 @@
 import SwiftUI
 
 struct EditProduct: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var productVM: ProductViewModel
+    @FetchRequest(sortDescriptors: []) private var products: FetchedResults<Product>
     
     var body: some View {
         List {
-            ForEach(placeholderVM.placeholder) { product in
+            ForEach(productVM.products) { product in
                 NavigationLink(destination: EditProduct()) {
-                    Text(product.title)
+                    Text(product.title ?? "Unknown Title")
                 }
             }
             .onDelete(perform: { indexSet in
-                placeholderVM.placeholder.remove(atOffsets: indexSet)
+                productVM.removeProduct(at: indexSet, products: products, viewContext: viewContext)
             })
         }
         .navigationTitle("Edit Product")
         .toolbar {
             EditButton()
         }
-    }
-}
-
-struct EditProduct_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProduct().environmentObject(PlaceholderViewModel())
     }
 }
