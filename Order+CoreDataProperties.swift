@@ -20,6 +20,10 @@ extension Order {
     @NSManaged public var payment: String?
     @NSManaged public var shipping: String?
     @NSManaged public var total: Float
+    @NSManaged public var fullName: String?
+    @NSManaged public var address: String?
+    @NSManaged public var postcode: Int32
+    @NSManaged public var city: String?
     @NSManaged public var purchaseDate: Date?
     @NSManaged public var products: Set<Product>
     @NSManaged public var user: User?

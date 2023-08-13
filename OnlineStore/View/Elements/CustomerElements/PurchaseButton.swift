@@ -14,6 +14,10 @@ struct PurchaseButton: View {
     @State var showAlert: Bool = false
     @Binding var showPopover: Bool
     var total: Float
+    var fullName: String
+    var address: String
+    var postcode: Int32
+    var city: String
     var shipping: String
     var payment: String
     var purchaseDate: Date
@@ -24,6 +28,10 @@ struct PurchaseButton: View {
         Button {
             orderVM.addOrder(
                 total: total,
+                fullName: fullName,
+                address: address,
+                postcode: postcode,
+                city: city,
                 shipping: shipping,
                 payment: payment,
                 purchaseDate: purchaseDate,

@@ -69,9 +69,38 @@ struct OrderItem: View {
             
             Group {
                 HStack {
-                    Text("Shipping")
+                    Text("Shipping Information")
                         .font(.title3)
                         .bold()
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                VStack(alignment: .leading) {
+                    Text("Full Name: \(order.fullName ?? "Unknown Full Name")")
+                        .padding(.top)
+                        .padding(.horizontal)
+                    
+                    Text("Address: \(order.address ?? "Unknown Address")")
+                        .padding(.horizontal)
+                    
+                    Text("Postcode: \(appVM.numberFormatterInt.string(from: NSNumber(value: order.postcode)) ?? "")")
+                        .padding(.horizontal)
+                    
+                    Text("City: \(order.city ?? "Unknown City")")
+                        .padding(.bottom)
+                        .padding(.horizontal)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Divider()
+                    .padding(.horizontal)
+            }
+            
+            Group {
+                HStack {
+                    Text("Shipping")
+                        .font(.title3)
                         .bold()
                     Spacer()
                 }

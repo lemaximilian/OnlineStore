@@ -11,10 +11,10 @@ struct EditUserButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
-    @Binding var mail: String
-    @Binding var username: String
-    @Binding var password: String
-    @Binding var birthDate: Date
+    var mail: String
+    var username: String
+    var password: String
+    var birthDate: Date
     var user: User
     
     var body: some View {

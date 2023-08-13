@@ -11,12 +11,12 @@ struct AddProductButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var productVM: ProductViewModel
-    @Binding var title: String
-    @Binding var price: Float
-    @Binding var description: String
-    @Binding var selectedCategory: Category
-    @Binding var highlightArray: [String]
-    @Binding var imageArray: [Data?]
+    var title: String
+    var price: Float
+    var description: String
+    var selectedCategory: Category
+    var highlightArray: [String]
+    var imageArray: [Data?]
     
     var body: some View {
         Button("Add Product") {

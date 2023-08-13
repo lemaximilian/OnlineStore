@@ -12,6 +12,11 @@ struct Checkout: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var notificationVM: NotificationViewModel
+    @State var fullName = ""
+    @State var address = ""
+    @State var postcode: Int32 = 0
+    @State var city = ""
     @State var checkedShipping = true
     @State var checkedPayment = true
     @Binding var showPopover: Bool
@@ -22,6 +27,8 @@ struct Checkout: View {
                 CheckoutItemList()
                 
                 InvoiceFields(checkedShipping: $checkedShipping, total: calcTotalAmount())
+                
+                ShippingInformation(fullName: $fullName, address: $address, postcode: $postcode, city: $city)
             
                 ShippingOptions(checkedShipping: $checkedShipping)
                 
@@ -30,6 +37,10 @@ struct Checkout: View {
                 PurchaseButton(
                     showPopover: $showPopover,
                     total: checkedShipping ? calcTotalAmount() : calcTotalAmount() + 4.99,
+                    fullName: fullName,
+                    address: address,
+                    postcode: postcode,
+                    city: city,
                     shipping: checkedShipping ? "Standard" : "Express",
                     payment: checkedPayment ? "PayPal" : "Credit Card",
                     purchaseDate: Date(),
@@ -43,6 +54,7 @@ struct Checkout: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
+                        notificationVM.unsubscribeNotification()
                         showPopover = false
                     }
                 }

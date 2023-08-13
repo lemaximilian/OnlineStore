@@ -35,6 +35,10 @@ class AppViewModel: ObservableObject {
         appData.numberFormatter
     }
     
+    var numberFormatterInt: NumberFormatter {
+        appData.numberFormatterInt
+    }
+    
     var dateFormatter: DateFormatter {
         appData.dateFormatter
     }

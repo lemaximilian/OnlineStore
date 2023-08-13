@@ -31,12 +31,12 @@ struct NewProduct: View {
             ProductPhoto(imageArray: $imageArray)
             
             AddProductButton(
-                title: $title,
-                price: $price,
-                description: $description,
-                selectedCategory: $selectedCategory,
-                highlightArray: $highlightArray,
-                imageArray: $imageArray
+                title: title,
+                price: price,
+                description: description,
+                selectedCategory: selectedCategory,
+                highlightArray: highlightArray,
+                imageArray: imageArray
             )
         }
         .navigationTitle("New Product")

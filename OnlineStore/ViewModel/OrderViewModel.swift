@@ -24,6 +24,10 @@ class OrderViewModel: ObservableObject {
     
     func addOrder(
         total: Float,
+        fullName: String,
+        address: String,
+        postcode: Int32,
+        city: String,
         shipping: String,
         payment: String,
         purchaseDate: Date,
@@ -34,6 +38,10 @@ class OrderViewModel: ObservableObject {
         let order = Order(context: viewContext)
         order.id = UUID()
         order.total = total
+        order.fullName = fullName
+        order.address = address
+        order.postcode = postcode
+        order.city = city
         order.shipping = shipping
         order.payment = payment
         order.purchaseDate = purchaseDate

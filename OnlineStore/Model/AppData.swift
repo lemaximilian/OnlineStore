@@ -32,6 +32,14 @@ struct AppData {
         return formatter
     }()
     
+    let numberFormatterInt: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumIntegerDigits = 5
+        formatter.groupingSeparator = ""
+        formatter.zeroSymbol = ""
+        return formatter
+    }()
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
