@@ -10,6 +10,7 @@ import Foundation
 enum Tab {
     case home
     case shoppingCart
+    case products
     case categories
     case settings
 }

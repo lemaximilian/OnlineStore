@@ -15,6 +15,7 @@ struct TabController: View {
         TabView(selection: $tab) {
             HomeTab()
             ShoppingCartTab()
+            ProductsTab()
             CategoriesTab()
             SettingsTab()
         }

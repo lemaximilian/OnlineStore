@@ -51,12 +51,12 @@ struct LoginButton: View {
         case .successCustomer:
             appVM.invalidFields = false
             appVM.loading()
-            print(userVM.currentUser)
             productVM.fetchProducts(viewContext: viewContext)
             appVM.loginCustomer()
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
+            productVM.fetchProducts(viewContext: viewContext)
             appVM.loginSeller()
         }
     }
