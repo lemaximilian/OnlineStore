@@ -25,20 +25,10 @@ struct NewCategory: View {
                     selection: $selectedItem,
                     matching: .images,
                     photoLibrary: .shared()) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke()
-                                .aspectRatio(contentMode: .fit)
-                            
-                            VStack {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                
-                                Text("Add Image")
-                                    .font(.footnote)
-                                    .bold()
-                            }
+                        HStack {
+                            Text("Add Image")
+                                                    
+                            Image(systemName: "photo")
                         }
                     }
                     .onChange(of: selectedItem) { newItem in

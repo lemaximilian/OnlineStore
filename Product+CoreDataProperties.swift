@@ -26,6 +26,26 @@ extension Product {
     @NSManaged public var order: Set<Order>
     @NSManaged public var review: Set<Review>
     @NSManaged public var shoppingCart: Set<Product>
+    
+    public var unwrappedTitle: String {
+        get { title ?? "Unknown Title" }
+        set { title = newValue }
+    }
+    
+    public var unwrappedDetails: String {
+        get { details ?? "Unknown Details" }
+        set { details = newValue }
+    }
+    
+    public var unwrappedCategory: Category {
+        get { category ?? Category() }
+        set { category = newValue }
+    }
+    
+    public var unwrappedHighlights: Data {
+        get { highlights ?? Data() }
+        set { highlights = newValue }
+    }
 
 }
 

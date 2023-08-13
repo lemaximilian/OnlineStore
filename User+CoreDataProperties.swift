@@ -25,6 +25,26 @@ extension User {
     @NSManaged public var review: Set<Review>
     @NSManaged public var shoppingCart: Set<Product>
 
+    public var unwrappedMail: String {
+        get { mail ?? "Unknown Mail" }
+        set { mail = newValue }
+    }
+    
+    public var unwrappedUsername: String {
+        get { username ?? "Unknown Username"}
+        set { username = newValue }
+    }
+    
+    public var unwrappedPassword: String {
+        get { password ?? "Unknown Password" }
+        set { password = newValue}
+    }
+    
+    public var unwrappedBirthDate: Date {
+        get { birthDate ?? Date() }
+        set { birthDate = newValue }
+    }
+    
 }
 
 // MARK: Generated accessors for orders

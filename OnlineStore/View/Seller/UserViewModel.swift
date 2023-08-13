@@ -34,7 +34,6 @@ class UserViewModel: ObservableObject {
         if mail.isEmpty || username.isEmpty || password.isEmpty {
             return .fieldsInvalid
         } else {
-            
             let user = User(context: viewContext)
             user.id = UUID()
             user.mail = mail
@@ -57,6 +56,21 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func editUser(
+        user: User,
+        mail: String,
+        username: String,
+        password: String,
+        birthDate: Date,
+        viewContext: NSManagedObjectContext
+    ) {
+        user.mail = mail
+        user.username = username
+        user.password = password
+        user.birthDate = birthDate
+        save(viewContext: viewContext)
+    }
+    
     func validateUser(
         username: String,
         password: String
@@ -75,6 +89,14 @@ class UserViewModel: ObservableObject {
             }
             return .credentialsInvalid
         }
+    }
+    
+    func removeUser(at offsets: IndexSet, users: FetchedResults<User>, viewContext: NSManagedObjectContext) {
+        for index in offsets {
+            let user = users[index]
+            viewContext.delete(user)
+        }
+        save(viewContext: viewContext)
     }
     
     func save(viewContext: NSManagedObjectContext) {

@@ -21,12 +21,12 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: EditProduct()) {
+                    NavigationLink(destination: ProductManagement()) {
                         RectangleButton(title: "Edit Product", image: "pencil")
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: EditProduct()) {
+                    NavigationLink(destination: UserManagement()) {
                         RectangleButton(title: "User Management", image: "person.fill")
                     }
                     .buttonStyle(.plain)
