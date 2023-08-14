@@ -2,7 +2,7 @@
 //  Product+CoreDataProperties.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 21.07.23.
+//  Created by Maximilian Le on 02.08.23.
 //
 //
 
@@ -23,8 +23,46 @@ extension Product {
     @NSManaged public var price: Float
     @NSManaged public var title: String?
     @NSManaged public var category: Category?
-    @NSManaged public var review: NSSet?
-    @NSManaged public var shoppingCart: NSSet?
+    @NSManaged public var order: Set<Order>
+    @NSManaged public var review: Set<Review>
+    @NSManaged public var shoppingCart: Set<Product>
+    
+    public var unwrappedTitle: String {
+        get { title ?? "Unknown Title" }
+        set { title = newValue }
+    }
+    
+    public var unwrappedDetails: String {
+        get { details ?? "Unknown Details" }
+        set { details = newValue }
+    }
+    
+    public var unwrappedCategory: Category {
+        get { category ?? Category() }
+        set { category = newValue }
+    }
+    
+    public var unwrappedHighlights: Data {
+        get { highlights ?? Data() }
+        set { highlights = newValue }
+    }
+
+}
+
+// MARK: Generated accessors for order
+extension Product {
+
+    @objc(addOrderObject:)
+    @NSManaged public func addToOrder(_ value: Order)
+
+    @objc(removeOrderObject:)
+    @NSManaged public func removeFromOrder(_ value: Order)
+
+    @objc(addOrder:)
+    @NSManaged public func addToOrder(_ values: NSSet)
+
+    @objc(removeOrder:)
+    @NSManaged public func removeFromOrder(_ values: NSSet)
 
 }
 
