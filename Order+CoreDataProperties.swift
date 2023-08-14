@@ -28,6 +28,30 @@ extension Order {
     @NSManaged public var products: Set<Product>
     @NSManaged public var user: User?
 
+    public var unwrappedFullName: String {
+        get { fullName ?? "Unknown Full Name" }
+        set { fullName = newValue }
+    }
+    
+    public var unwrappedAddress: String {
+        get { address ?? "Unknown Address" }
+        set { address = newValue }
+    }
+    
+    public var unwrappedCity: String {
+        get { city ?? "Unknown City" }
+        set { city = newValue }
+    }
+    
+    public var unwrappedShipping: String {
+        get { shipping ?? "Unknown Shipping" }
+        set { shipping = newValue }
+    }
+    
+    public var unwrappedPayment: String {
+        get { payment ?? "Unknown Payment" }
+        set { payment = newValue }
+    }
 }
 
 // MARK: Generated accessors for products

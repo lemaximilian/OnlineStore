@@ -11,7 +11,7 @@ import CoreData
 class UserViewModel: ObservableObject {
     let controller = PersistenceController.shared
     @Published var users: [User] = []
-    @Published var currentUser = User()
+    @Published var currentUser = User(context: PersistenceController.shared.container.viewContext)
     
     func fetchUsers(viewContext: NSManagedObjectContext) {
         let request = NSFetchRequest<User>(entityName: "User")

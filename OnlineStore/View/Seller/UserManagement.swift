@@ -13,19 +13,24 @@ struct UserManagement: View {
     @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "isSeller == %@", "false")) private var users: FetchedResults<User>
     
     var body: some View {
-        List {
-            ForEach(users) { user in
-                NavigationLink(destination: EditUser(user: user)) {
-                    Text(user.username ?? "Unknown Username")
+        if users.isEmpty {
+            Text("There are currently no users")
+                .navigationTitle("User Management")
+        } else {
+            List {
+                ForEach(users) { user in
+                    NavigationLink(destination: EditUser(user: user)) {
+                        Text(user.username ?? "Unknown Username")
+                    }
                 }
+                .onDelete(perform: { indexSet in
+                    userVM.removeUser(at: indexSet, users: users, viewContext: viewContext)
+                })
             }
-            .onDelete(perform: { indexSet in
-                userVM.removeUser(at: indexSet, users: users, viewContext: viewContext)
-            })
-        }
-        .navigationTitle("User Management")
-        .toolbar {
-            EditButton()
+            .navigationTitle("User Management")
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }

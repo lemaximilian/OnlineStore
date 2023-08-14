@@ -58,6 +58,7 @@ struct RegisterButton: View {
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
+            productVM.fetchProducts(viewContext: viewContext)
             appVM.loginSeller()
         }
     }

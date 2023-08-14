@@ -1,29 +1,29 @@
 //
-//  EditUserButton.swift
+//  EditOrderButton.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 13.08.23.
+//  Created by Maximilian Le on 14.08.23.
 //
 
 import SwiftUI
 
-struct EditUserButton: View {
+struct EditOrderButton: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var viewContext
-    @EnvironmentObject var appVM: AppViewModel
-    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var orderVM: OrderViewModel
+    @State var alertShown = false
     @State var activeAlert: ActiveAlert = .first
-    @Binding var mail: String
-    @Binding var username: String
-    @Binding var password: String
-    @Binding var birthDate: Date
-    var user: User
+    @Binding var fullName: String
+    @Binding var address: String
+    @Binding var postcode: Int32
+    @Binding var city: String
+    var order: Order
     
     var body: some View {
-        Button("Edit User") {
-            editUser()
+        Button("Edit Order") {
+            editOrder()
         }
-        .alert(isPresented: $appVM.alertShown) {
+        .alert(isPresented: $alertShown) {
             switch activeAlert {
             case .first: return missingAlert
             case .second: return editAlert
@@ -43,28 +43,30 @@ struct EditUserButton: View {
     
     var editAlert: Alert {
         Alert(
-            title: Text("User edited!"),
+            title: Text("Order edited!"),
             dismissButton: .cancel(Text("OK")) {
                 self.presentationMode.wrappedValue.dismiss()
             }
         )
     }
     
-    func editUser() {
-        if mail.isEmpty || username.isEmpty || password.isEmpty {
+    func editOrder() {
+        if fullName.isEmpty || address.isEmpty || city.isEmpty {
             activeAlert = .first
-            appVM.alertShown = true
+            alertShown = true
         } else {
-            userVM.editUser(
-                user: user,
-                mail: mail,
-                username: username,
-                password: password,
-                birthDate: birthDate,
+            orderVM.editOrder(
+                order: order,
+                fullName: fullName,
+                address: address,
+                postcode: postcode,
+                city: city,
                 viewContext: viewContext
             )
             activeAlert = .second
-            appVM.alertShown = true
+            alertShown = true
         }
     }
 }
+
+

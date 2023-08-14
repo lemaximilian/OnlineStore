@@ -27,12 +27,12 @@ struct EditProduct: View {
             ProductPhoto(imageArray: getImages())
             
             EditProductButton(
-                title: product.unwrappedTitle,
-                price: product.price,
-                description: product.unwrappedDetails,
-                selectedCategory: product.unwrappedCategory,
-                highlightArray: productVM.fetchProductHighlights(product: product, viewContext: viewContext),
-                imageArray: productVM.fetchProductImages(product: product, viewContext: viewContext),
+                title: $product.unwrappedTitle,
+                price: $product.price,
+                description: $product.unwrappedDetails,
+                selectedCategory: $product.unwrappedCategory,
+                highlightArray: getHighlights(),
+                imageArray: getImages(),
                 product: product
             )
         }

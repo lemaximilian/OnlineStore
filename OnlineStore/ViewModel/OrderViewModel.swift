@@ -51,6 +51,29 @@ class OrderViewModel: ObservableObject {
         save(viewContext: viewContext)
     }
     
+    func editOrder(
+        order: Order,
+        fullName: String,
+        address: String,
+        postcode: Int32,
+        city: String,
+        viewContext: NSManagedObjectContext
+    ) {
+        order.fullName = fullName
+        order.address = address
+        order.postcode = postcode
+        order.city = city
+        save(viewContext: viewContext)
+    }
+    
+    func removeOrder(at offsets: IndexSet, orders: FetchedResults<Order>, viewContext: NSManagedObjectContext) {
+        for index in offsets {
+            let order = orders[index]
+            viewContext.delete(order)
+        }
+        save(viewContext: viewContext)
+    }
+    
     func save(viewContext: NSManagedObjectContext) {
         orders.removeAll()
         

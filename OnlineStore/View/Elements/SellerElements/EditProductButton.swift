@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct EditProductButton: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var productVM: ProductViewModel
-    var title: String
-    var price: Float
-    var description: String
-    var selectedCategory: Category
-    var highlightArray: [String]
-    var imageArray: [Data?]
+    @State var activeAlert: ActiveAlert = .first
+    @Binding var title: String
+    @Binding var price: Float
+    @Binding var description: String
+    @Binding var selectedCategory: Category
+    @Binding var highlightArray: [String]
+    @Binding var imageArray: [Data?]
     var product: Product
     
     var body: some View {
@@ -24,13 +26,16 @@ struct EditProductButton: View {
             editProduct()
         }
         .alert(isPresented: $appVM.alertShown) {
-            MissingAlert
+            switch activeAlert {
+            case .first: return missingAlert
+            case .second: return editAlert
+            }
         }
         .buttonStyle(.borderedProminent)
         .padding()
     }
     
-    var MissingAlert: Alert {
+    var missingAlert: Alert {
         Alert(
             title: Text("Missing Inputs"),
             message: Text("Please check your inputs"),
@@ -38,8 +43,18 @@ struct EditProductButton: View {
         )
     }
     
+    var editAlert: Alert {
+        Alert(
+            title: Text("Product edited!"),
+            dismissButton: .cancel(Text("OK")) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        )
+    }
+    
     func editProduct() {
         if title.isEmpty || description.isEmpty || highlightArray.isEmpty || imageArray.isEmpty {
+            activeAlert = .first
             appVM.alertShown = true
         } else {
             productVM.editProduct(
@@ -52,6 +67,8 @@ struct EditProductButton: View {
                 images: imageArray,
                 viewContext: viewContext
             )
+            activeAlert = .second
+            appVM.alertShown = true
         }
     }
 }

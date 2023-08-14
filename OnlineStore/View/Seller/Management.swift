@@ -14,7 +14,7 @@ struct Management: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
                     NavigationLink(destination: NewProduct(selectedCategory: categories.first ?? Category())) {
                         RectangleButton(title: "New Product", image: "plus")
@@ -28,6 +28,11 @@ struct Management: View {
                     
                     NavigationLink(destination: UserManagement()) {
                         RectangleButton(title: "User Management", image: "person.fill")
+                    }
+                    .buttonStyle(.plain)
+                    
+                    NavigationLink(destination: OrderManagement()) {
+                        RectangleButton(title: "Order Management", image: "box.truck.badge.clock.fill")
                     }
                     .buttonStyle(.plain)
                     

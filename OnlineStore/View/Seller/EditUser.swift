@@ -40,10 +40,10 @@ struct EditUser: View {
                 .padding()
             
             EditUserButton(
-                mail: user.unwrappedMail,
-                username: user.unwrappedUsername,
-                password: user.unwrappedPassword,
-                birthDate: user.unwrappedBirthDate,
+                mail: $user.unwrappedMail,
+                username: $user.unwrappedUsername,
+                password: $user.unwrappedPassword,
+                birthDate: $user.unwrappedBirthDate,
                 user: user
             )
         }
