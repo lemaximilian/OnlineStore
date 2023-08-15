@@ -40,5 +40,6 @@ struct Registration: View {
         .blur(radius: appVM.isLoading ? 3 : 0)
         .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))
         .padding()
+        .transition(.move(edge: .trailing))
     }
 }

@@ -44,7 +44,7 @@ struct EditOrderButton: View {
     var editAlert: Alert {
         Alert(
             title: Text("Order edited!"),
-            dismissButton: .cancel(Text("OK")) {
+            dismissButton: .default(Text("OK")) {
                 self.presentationMode.wrappedValue.dismiss()
             }
         )

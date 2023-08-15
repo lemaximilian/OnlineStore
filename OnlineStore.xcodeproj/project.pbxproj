@@ -84,6 +84,13 @@
 		89BF1FBA2A7D2EC800779C30 /* OrderItemsAndCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FB92A7D2EC800779C30 /* OrderItemsAndCounter.swift */; };
 		89BF1FC02A7D436A00779C30 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FBF2A7D436A00779C30 /* OrderItem.swift */; };
 		89BF1FC22A7D691A00779C30 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */; };
+		89D376592A8AAE96002F3E8B /* SupportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D376582A8AAE95002F3E8B /* SupportRequest.swift */; };
+		89D3765B2A8AEE01002F3E8B /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3765A2A8AEE01002F3E8B /* TicketViewModel.swift */; };
+		89D3765D2A8AF5D1002F3E8B /* TicketManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3765C2A8AF5D1002F3E8B /* TicketManagement.swift */; };
+		89D3765F2A8AF8B8002F3E8B /* OpenTickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3765E2A8AF8B8002F3E8B /* OpenTickets.swift */; };
+		89D376612A8AF8C3002F3E8B /* ProcessedTickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D376602A8AF8C3002F3E8B /* ProcessedTickets.swift */; };
+		89D376632A8AFD17002F3E8B /* TicketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D376622A8AFD17002F3E8B /* TicketItem.swift */; };
+		89D376652A8B0A57002F3E8B /* ManagementSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D376642A8B0A57002F3E8B /* ManagementSettings.swift */; };
 		89D7F5652A87B8100059387C /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7F5642A87B8100059387C /* UserManagement.swift */; };
 		89D7F5672A87B9B10059387C /* EditProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7F5662A87B9B10059387C /* EditProduct.swift */; };
 		89D7F5692A87B9BE0059387C /* EditUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7F5682A87B9BE0059387C /* EditUser.swift */; };
@@ -212,6 +219,13 @@
 		89BF1FB92A7D2EC800779C30 /* OrderItemsAndCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsAndCounter.swift; sourceTree = "<group>"; };
 		89BF1FBF2A7D436A00779C30 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		89BF1FC12A7D691A00779C30 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		89D376582A8AAE95002F3E8B /* SupportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportRequest.swift; sourceTree = "<group>"; };
+		89D3765A2A8AEE01002F3E8B /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
+		89D3765C2A8AF5D1002F3E8B /* TicketManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagement.swift; sourceTree = "<group>"; };
+		89D3765E2A8AF8B8002F3E8B /* OpenTickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTickets.swift; sourceTree = "<group>"; };
+		89D376602A8AF8C3002F3E8B /* ProcessedTickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedTickets.swift; sourceTree = "<group>"; };
+		89D376622A8AFD17002F3E8B /* TicketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItem.swift; sourceTree = "<group>"; };
+		89D376642A8B0A57002F3E8B /* ManagementSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementSettings.swift; sourceTree = "<group>"; };
 		89D7F5642A87B8100059387C /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		89D7F5662A87B9B10059387C /* EditProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProduct.swift; sourceTree = "<group>"; };
 		89D7F5682A87B9BE0059387C /* EditUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUser.swift; sourceTree = "<group>"; };
@@ -300,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				890BE6B32A1F9590009D04C8 /* PlaceholderViewModel.swift */,
+				89D3765A2A8AEE01002F3E8B /* TicketViewModel.swift */,
 				89E971822A4DDB9E00699258 /* UserViewModel.swift */,
 				8966C4012A67790F00004358 /* ProductViewModel.swift */,
 				89BF1FB12A7A821C00779C30 /* OrderViewModel.swift */,
@@ -360,6 +375,7 @@
 		898F1FBD2A55BCA1007CC4B7 /* SellerSections */ = {
 			isa = PBXGroup;
 			children = (
+				89D376622A8AFD17002F3E8B /* TicketItem.swift */,
 				89A596152A547F3600ADDFEC /* ProductFields.swift */,
 				89A5961E2A54B82300ADDFEC /* HighlightList.swift */,
 				89A5961A2A548EB600ADDFEC /* ProductPhoto.swift */,
@@ -512,6 +528,7 @@
 				895E7C4B2A39E5410024956E /* ProductPage.swift */,
 				895947F92A83E1C700B70E83 /* AddReview.swift */,
 				890BE6BD2A2750D9009D04C8 /* Settings.swift */,
+				89D376582A8AAE95002F3E8B /* SupportRequest.swift */,
 				8966C4192A71653700004358 /* Checkout.swift */,
 			);
 			path = Customer;
@@ -521,12 +538,16 @@
 			isa = PBXGroup;
 			children = (
 				890BE6CF2A30BD57009D04C8 /* Management.swift */,
+				89D376642A8B0A57002F3E8B /* ManagementSettings.swift */,
 				890BE6D32A35D9DB009D04C8 /* NewProduct.swift */,
 				89A5961C2A54A70600ADDFEC /* Highlight.swift */,
 				89E971B92A52DE7900699258 /* NewCategory.swift */,
 				895E7C442A3752D10024956E /* ProductManagement.swift */,
 				89D7F5642A87B8100059387C /* UserManagement.swift */,
 				89D7F57A2A8A627E0059387C /* OrderManagement.swift */,
+				89D3765C2A8AF5D1002F3E8B /* TicketManagement.swift */,
+				89D3765E2A8AF8B8002F3E8B /* OpenTickets.swift */,
+				89D376602A8AF8C3002F3E8B /* ProcessedTickets.swift */,
 				89D7F57C2A8A63120059387C /* UserOrderList.swift */,
 				89D7F57E2A8A693B0059387C /* EditOrder.swift */,
 				89D7F5662A87B9B10059387C /* EditProduct.swift */,
@@ -665,6 +686,7 @@
 				890BE6B22A1F9529009D04C8 /* Placeholder.swift in Sources */,
 				89D7F5692A87B9BE0059387C /* EditUser.swift in Sources */,
 				895947FA2A83E1C700B70E83 /* AddReview.swift in Sources */,
+				89D376632A8AFD17002F3E8B /* TicketItem.swift in Sources */,
 				890BE6C42A275149009D04C8 /* TabController.swift in Sources */,
 				89D7F56B2A87C59D0059387C /* EditProductButton.swift in Sources */,
 				89BF1FAF2A7A7E2A00779C30 /* Order+CoreDataClass.swift in Sources */,
@@ -693,7 +715,9 @@
 				89D7F57D2A8A63120059387C /* UserOrderList.swift in Sources */,
 				89A5961F2A54B82300ADDFEC /* HighlightList.swift in Sources */,
 				89E971B62A51F12500699258 /* SettingsTab.swift in Sources */,
+				89D376652A8B0A57002F3E8B /* ManagementSettings.swift in Sources */,
 				89E971B42A51F0EB00699258 /* CategoriesTab.swift in Sources */,
+				89D3765D2A8AF5D1002F3E8B /* TicketManagement.swift in Sources */,
 				89E971992A51E8AB00699258 /* CheckoutButton.swift in Sources */,
 				8966C40B2A6A69D300004358 /* Review+CoreDataClass.swift in Sources */,
 				89A5961D2A54A70600ADDFEC /* Highlight.swift in Sources */,
@@ -701,6 +725,7 @@
 				89BF1FB62A7D29C700779C30 /* EmptyOrder.swift in Sources */,
 				8966C40F2A6A69D300004358 /* User+CoreDataClass.swift in Sources */,
 				89BF1FC22A7D691A00779C30 /* NotificationViewModel.swift in Sources */,
+				89D3765F2A8AF8B8002F3E8B /* OpenTickets.swift in Sources */,
 				89E971BA2A52DE7900699258 /* NewCategory.swift in Sources */,
 				898F1FD22A55BFC2007CC4B7 /* ExistingAccountButton.swift in Sources */,
 				89E971782A4C1C6B00699258 /* LoadingOverlay.swift in Sources */,
@@ -711,6 +736,7 @@
 				89E971852A516F5200699258 /* RegistrationFields.swift in Sources */,
 				895947DE2A825EAF00B70E83 /* CheckoutItemList.swift in Sources */,
 				89D7F58A2A8AA5000059387C /* ShippedOrder+CoreDataClass.swift in Sources */,
+				89D3765B2A8AEE01002F3E8B /* TicketViewModel.swift in Sources */,
 				890BE6C02A2750E3009D04C8 /* Categories.swift in Sources */,
 				89D7F5872A8AA2C80059387C /* Ticket+CoreDataProperties.swift in Sources */,
 				895E7C4E2A39EB380024956E /* PlaceholderImage.swift in Sources */,
@@ -750,10 +776,12 @@
 				89D7F5772A891AD20059387C /* ShippingInformation.swift in Sources */,
 				89D7F56D2A88F8670059387C /* EditUserButton.swift in Sources */,
 				89A596192A548DE800ADDFEC /* CategoryPicker.swift in Sources */,
+				89D376612A8AF8C3002F3E8B /* ProcessedTickets.swift in Sources */,
 				895947FE2A8530B900B70E83 /* EmptyCategory.swift in Sources */,
 				89BECF592A1F5DD700BD0034 /* OnlineStoreApp.swift in Sources */,
 				890BE6C62A276367009D04C8 /* ProductRectangle.swift in Sources */,
 				895E7C452A3752D10024956E /* ProductManagement.swift in Sources */,
+				89D376592A8AAE96002F3E8B /* SupportRequest.swift in Sources */,
 				89BF1FB22A7A821C00779C30 /* OrderViewModel.swift in Sources */,
 				891D7A5D2A56B845008F284E /* AddProductButton.swift in Sources */,
 				8966C4022A67790F00004358 /* ProductViewModel.swift in Sources */,

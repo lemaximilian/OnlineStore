@@ -45,9 +45,22 @@ class OrderViewModel: ObservableObject {
         order.shipping = shipping
         order.payment = payment
         order.purchaseDate = purchaseDate
+        order.isShipped = false
         order.user = user
         order.products = Set(products)
         user.orders.insert(order)
+        save(viewContext: viewContext)
+    }
+    
+    func shipOrder(
+        order: Order,
+        viewContext: NSManagedObjectContext
+    ) {
+        let shippedOrder = ShippedOrder(context: viewContext)
+        shippedOrder.id = UUID()
+        shippedOrder.order = order
+        order.isShipped = true
+        order.shipped = shippedOrder
         save(viewContext: viewContext)
     }
     

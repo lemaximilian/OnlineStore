@@ -25,6 +25,7 @@ extension Order {
     @NSManaged public var postcode: Int32
     @NSManaged public var city: String?
     @NSManaged public var purchaseDate: Date?
+    @NSManaged public var isShipped: Bool
     @NSManaged public var products: Set<Product>
     @NSManaged public var user: User?
     @NSManaged public var shipped: ShippedOrder?

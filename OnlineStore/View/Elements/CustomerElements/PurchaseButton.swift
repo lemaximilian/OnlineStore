@@ -11,7 +11,6 @@ struct PurchaseButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var orderVM: OrderViewModel
-    @EnvironmentObject var notificationVM: NotificationViewModel
     @State var showAlert: Bool = false
     @State var activeAlert: ActiveAlert = .first
     @Binding var showPopover: Bool
@@ -61,7 +60,6 @@ struct PurchaseButton: View {
             title: Text("Purchased successfully!"),
             message: Text("Your purchase was successful and your order was placed."),
             dismissButton: .cancel(Text("OK")) {
-                notificationVM.unsubscribeNotification()
                 userVM.currentUser.shoppingCart.removeAll()
                 userVM.save(viewContext: viewContext)
                 showPopover = false

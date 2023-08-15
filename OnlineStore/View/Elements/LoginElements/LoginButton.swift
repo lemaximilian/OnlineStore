@@ -12,6 +12,7 @@ struct LoginButton: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var notificationVM: NotificationViewModel
     @Binding var username: String
     @Binding var password: String
     @Binding var startAnimation: Bool
@@ -52,6 +53,7 @@ struct LoginButton: View {
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
+            notificationVM.subscribeNotifications()
             appVM.loginCustomer()
         case .successSeller:
             appVM.invalidFields = false

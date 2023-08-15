@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct CheckoutButton: View {
-    @EnvironmentObject var notificationVM: NotificationViewModel
     @State var showPopover: Bool = false
     
     var body: some View {
         Button {
-            notificationVM.subscribeNotifications()
             showPopover = true
         } label: {
             HStack {

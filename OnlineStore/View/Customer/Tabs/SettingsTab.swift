@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsTab: View {
     var body: some View {
         NavigationStack {
-            LogoutButton()
+            Settings()
         }
         .tabItem {
             Image(systemName: "gearshape")

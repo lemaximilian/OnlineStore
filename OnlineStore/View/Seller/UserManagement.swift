@@ -10,7 +10,7 @@ import SwiftUI
 struct UserManagement: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var userVM: UserViewModel
-    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "isSeller == %@", "false")) private var users: FetchedResults<User>
+    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "isSeller == %@", "0")) private var users: FetchedResults<User>
     
     var body: some View {
         if users.isEmpty {

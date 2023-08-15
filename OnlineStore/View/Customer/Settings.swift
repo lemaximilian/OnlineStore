@@ -9,33 +9,28 @@ import SwiftUI
 
 struct Settings: View {
     @EnvironmentObject var placeholderVM: PlaceholderViewModel
+    @EnvironmentObject var appVM: AppViewModel
     
     var body: some View {
-        List {
-            Section("User Settings") {
-                ForEach(placeholderVM.placeholder) { setting in
-                    NavigationLink(destination: Settings()) {
-                        Text(setting.title)
+        VStack {
+            List {
+                Section("Help") {
+                    NavigationLink(destination: SupportRequest()) {
+                        Text("Request Support")
                     }
                 }
             }
-            Section("Appearance") {
-                ForEach(placeholderVM.placeholder) { setting in
-                    NavigationLink(destination: Settings()) {
-                        Text(setting.title)
-                    }
-                }
-            }
-            Section("Privacy Settings") {
-                ForEach(placeholderVM.placeholder) { setting in
-                    NavigationLink(destination: Settings()) {
-                        Text(setting.title)
-                    }
-                }
-            }
+            .listStyle(.plain)
+            
+            LogoutButton()
+            
+            Spacer()
         }
         .navigationTitle("Settings")
-        .listStyle(.plain)
+        .disabled(appVM.isLoading)
+        .blur(radius: appVM.isLoading ? 3 : 0)
+        .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Logging out"))
+        .transition(.move(edge: .leading))
     }
 }
 

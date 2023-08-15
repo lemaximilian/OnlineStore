@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct EditOrder: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var orderVM: OrderViewModel
+    @State var showAlert = false
     @State var order: Order
     
     var body: some View {
@@ -78,6 +81,35 @@ struct EditOrder: View {
                     Spacer()
                 }
                 .padding()
+                
+                Divider()
+                    .padding(.horizontal)
+            }
+            
+            Group {
+                HStack {
+                    Text("Shipping Status")
+                        .font(.title3)
+                        .bold()
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                HStack {
+                    Image(systemName: order.isShipped ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(order.isShipped ? .secondary : .primary)
+                        .alert(isPresented: $showAlert) {
+                            shipOrderAlert
+                        }
+                        .onTapGesture {
+                            if !(order.isShipped) {
+                                showAlert = true
+                            }
+                        }
+                    Text(order.isShipped ? "Order shipped" : "To be shipped")
+                    Spacer()
+                }
+                .padding()
             }
         }
         
@@ -87,6 +119,18 @@ struct EditOrder: View {
             postcode: $order.postcode,
             city: $order.unwrappedCity,
             order: order
+        )
+    }
+    
+    var shipOrderAlert: Alert {
+        Alert(
+            title: Text("Ship Order"),
+            message: Text("Are you sure you want to ship the order?"),
+            primaryButton: .default(Text("Ship Order")) {
+                orderVM.shipOrder(order: order, viewContext: viewContext)
+                self.presentationMode.wrappedValue.dismiss()
+            },
+            secondaryButton: .cancel(Text("Cancel"))
         )
     }
     

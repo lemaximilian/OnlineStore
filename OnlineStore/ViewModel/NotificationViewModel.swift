@@ -30,15 +30,15 @@ class NotificationViewModel: ObservableObject{
     func subscribeNotifications() {
         let predicate = NSPredicate(value: true)
         let subscription = CKQuerySubscription(
-            recordType: "CD_Order",
+            recordType: "CD_ShippedOrder",
             predicate: predicate,
-            subscriptionID: "order_added",
+            subscriptionID: "order_shipped",
             options: .firesOnRecordCreation
         )
         
         let notification = CKSubscription.NotificationInfo()
-        notification.title = "Order was added!"
-        notification.alertBody = "Your Order was added to the Database"
+        notification.title = "Order shipped!"
+        notification.alertBody = "Your Order was shipped and will arrive soon."
         notification.soundName = "default"
         
         subscription.notificationInfo = notification
@@ -53,7 +53,7 @@ class NotificationViewModel: ObservableObject{
     }
     
     func unsubscribeNotification() {
-        controller.delete(withSubscriptionID: "order_added") { id, error in
+        controller.delete(withSubscriptionID: "order_shipped") { id, error in
             if let error = error {
                 print(error)
             } else {

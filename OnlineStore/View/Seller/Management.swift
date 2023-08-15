@@ -41,12 +41,12 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: NewCategory()) {
+                    NavigationLink(destination: TicketManagement()) {
                         RectangleButton(title: "Support Requests", image: "person.fill.questionmark")
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: LogoutButton()) {
+                    NavigationLink(destination: ManagementSettings()) {
                         RectangleButton(title: "Settings", image: "gearshape.fill")
                     }
                     .buttonStyle(.plain)

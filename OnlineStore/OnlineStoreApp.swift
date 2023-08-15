@@ -16,6 +16,7 @@ struct OnlineStoreApp: App {
     @StateObject private var order = OrderViewModel()
     @StateObject private var review = ReviewViewModel()
     @StateObject private var notification = NotificationViewModel()
+    @StateObject private var ticket = TicketViewModel()
     let persistenceController = PersistenceController.shared
     
     init() {
@@ -33,6 +34,7 @@ struct OnlineStoreApp: App {
                 .environmentObject(order)
                 .environmentObject(review)
                 .environmentObject(notification)
+                .environmentObject(ticket)
         }
     }
 }
