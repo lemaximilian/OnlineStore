@@ -24,19 +24,6 @@ struct CheckoutButton: View {
         .popover(isPresented: $showPopover) {
             Checkout(showPopover: $showPopover)
         }
-//        Button {
-//            showAlert = true
-//        } label: {
-//            HStack {
-//                Image(systemName: "eurosign")
-//                Text("Purchase")
-//            }
-//        }
-//        .buttonStyle(.borderedProminent)
-//        .padding()
-//        .alert("Purchased successfully!", isPresented: $showAlert) {
-//                    Button("OK", role: .cancel) { }
-//        }
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct ProductPhoto: View {
+struct AddProductPhoto: View {
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
     @Binding var imageArray: [Data?]

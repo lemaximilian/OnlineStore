@@ -10,7 +10,6 @@ import SwiftUI
 struct ProductPage: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var productVM: ProductViewModel
-    @State var selection = ""
     @State var showAlert = false
     var currentProduct: Product
     var imageArray: [Data]
@@ -33,7 +32,7 @@ struct ProductPage: View {
             ProductReviews(currentProduct: currentProduct)
             
         }
-        .navigationTitle(currentProduct.title ?? "")
+        .navigationTitle(currentProduct.unwrappedTitle)
         .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {

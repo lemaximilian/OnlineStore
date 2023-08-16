@@ -15,7 +15,7 @@ struct OrderItemList: View {
         ForEach(Array(userVM.currentUser.orders)) { order in
             NavigationLink(destination: OrderItem(order: order)) {
                 HStack {
-                    Text("Order from \(appVM.dateFormatter.string(from: order.purchaseDate ?? Date()))")
+                    Text("Order from \(appVM.dateFormatter.string(from: order.unwrappedPurchaseDate))")
                     Spacer()
                 }
                 .padding()

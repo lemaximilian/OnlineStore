@@ -24,6 +24,20 @@ extension Review {
     @NSManaged public var product: Product?
     @NSManaged public var user: User?
 
+    public var unwrappedTitle: String {
+        get { title ?? "Unknown Title" }
+        set { title = newValue }
+    }
+    
+    public var unwrappedComment: String {
+        get { comment ?? "Unknown Comment" }
+        set { comment = newValue }
+    }
+    
+    public var unwrappedCreationDate: Date {
+        get { creationDate ?? Date() }
+        set { creationDate = newValue }
+    }
 }
 
 extension Review : Identifiable {

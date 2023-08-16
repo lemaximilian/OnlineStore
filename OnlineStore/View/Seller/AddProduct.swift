@@ -1,5 +1,5 @@
 //
-//  NewProduct.swift
+//  AddProduct.swift
 //  OnlineStore
 //
 //  Created by Maximilian Le on 11.06.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct NewProduct: View {
+struct AddProduct: View {
     @State private var title = ""
     @State private var price: Float = 0.0
     @State private var description = ""
@@ -18,7 +18,7 @@ struct NewProduct: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ProductFields(
+            AddProductFields(
                 title: $title,
                 price: $price,
                 description: $description
@@ -28,7 +28,7 @@ struct NewProduct: View {
             
             HighlightList(highlightArray: $highlightArray)
             
-            ProductPhoto(imageArray: $imageArray)
+            AddProductPhoto(imageArray: $imageArray)
             
             AddProductButton(
                 title: title,

@@ -2,17 +2,14 @@
 //  ShippingInformation.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 13.08.23.
+//  Created by Maximilian Le on 16.08.23.
 //
 
 import SwiftUI
 
 struct ShippingInformation: View {
     @EnvironmentObject var appVM: AppViewModel
-    @Binding var fullName: String
-    @Binding var address: String
-    @Binding var postcode: Int32
-    @Binding var city: String
+    var order: Order
     
     var body: some View {
         HStack {
@@ -23,22 +20,22 @@ struct ShippingInformation: View {
         }
         .padding(.horizontal)
         
-        TextField("Full Name", text: $fullName)
-            .textFieldStyle(.roundedBorder)
-            .padding(.horizontal)
-        
-        TextField("Address", text: $address)
-            .textFieldStyle(.roundedBorder)
-            .padding(.horizontal)
-        
-        HStack {
-            TextField("Postcode", value: $postcode, formatter: appVM.numberFormatterInt)
-                .keyboardType(.numberPad)
-                .textFieldStyle(.roundedBorder)
-            TextField("City", text: $city)
-                .textFieldStyle(.roundedBorder)
+        VStack(alignment: .leading) {
+            Text("Full Name: \(order.unwrappedFullName)")
+                .padding(.top)
+                .padding(.horizontal)
+            
+            Text("Address: \(order.unwrappedAddress)")
+                .padding(.horizontal)
+            
+            Text("Postcode: \(appVM.numberFormatterInt.string(from: NSNumber(value: order.postcode)) ?? "")")
+                .padding(.horizontal)
+            
+            Text("City: \(order.unwrappedCity)")
+                .padding(.bottom)
+                .padding(.horizontal)
         }
-        .padding(.horizontal)
+        .frame(maxWidth: .infinity, alignment: .leading)
         
         Divider()
             .padding(.horizontal)

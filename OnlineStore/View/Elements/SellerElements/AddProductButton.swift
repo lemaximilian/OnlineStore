@@ -11,6 +11,7 @@ struct AddProductButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    @State var showAlert = false
     var title: String
     var price: Float
     var description: String
@@ -22,7 +23,7 @@ struct AddProductButton: View {
         Button("Add Product") {
             addProduct()
         }
-        .alert(isPresented: $appVM.alertShown) {
+        .alert(isPresented: $showAlert) {
             MissingAlert
         }
         .buttonStyle(.borderedProminent)
@@ -39,7 +40,7 @@ struct AddProductButton: View {
     
     func addProduct() {
         if title.isEmpty || description.isEmpty || highlightArray.isEmpty || imageArray.isEmpty {
-            appVM.alertShown = true
+            showAlert = true
         } else {
             productVM.addProduct(
                 title: title,

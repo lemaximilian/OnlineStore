@@ -43,6 +43,14 @@ class ReviewViewModel: ObservableObject {
         save(viewContext: viewContext)
     }
     
+    func getStarImage(for number: Int, rating: Int) -> Image {
+        if number > rating {
+            return Image(systemName: "star")
+        } else {
+            return Image(systemName: "star.fill")
+        }
+    }
+    
     func save(viewContext: NSManagedObjectContext) {
         reviews.removeAll()
         

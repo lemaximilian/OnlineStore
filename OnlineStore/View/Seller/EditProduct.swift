@@ -14,7 +14,7 @@ struct EditProduct: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ProductFields(
+            AddProductFields(
                 title: $product.unwrappedTitle,
                 price: $product.price,
                 description: $product.unwrappedDetails
@@ -22,32 +22,22 @@ struct EditProduct: View {
             
             CategoryPicker(selectedCategory: $product.unwrappedCategory)
             
-            HighlightList(highlightArray: getHighlights())
+            HighlightList(highlightArray: productVM.getHighlightsBinding(product: product, viewContext: viewContext))
             
-            ProductPhoto(imageArray: getImages())
+            AddProductPhoto(imageArray: productVM.getImagesBinding(product: product, viewContext: viewContext))
             
             EditProductButton(
                 title: $product.unwrappedTitle,
                 price: $product.price,
                 description: $product.unwrappedDetails,
                 selectedCategory: $product.unwrappedCategory,
-                highlightArray: getHighlights(),
-                imageArray: getImages(),
+                highlightArray: productVM.getHighlightsBinding(product: product, viewContext: viewContext),
+                imageArray: productVM.getImagesBinding(product: product, viewContext: viewContext),
                 product: product
             )
         }
         .navigationTitle("Edit Product")
         .padding()
-    }
-    
-    func getHighlights() -> Binding<[String]> {
-        var highlightArray = productVM.fetchProductHighlights(product: product, viewContext: viewContext)
-        return Binding(get: { highlightArray }, set: { highlightArray = $0 })
-    }
-    
-    func getImages() -> Binding<[Data?]> {
-        var imageArray: [Data?] = productVM.fetchProductImages(product: product, viewContext: viewContext)
-        return Binding(get: { imageArray }, set: { imageArray = $0 })
     }
 }
 

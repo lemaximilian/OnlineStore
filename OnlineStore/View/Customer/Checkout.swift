@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Checkout: View {
-    @Environment(\.managedObjectContext) var viewContext
-    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
     @EnvironmentObject var notificationVM: NotificationViewModel
@@ -24,11 +22,11 @@ struct Checkout: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                CheckoutItemList()
+                CheckoutItemList(products: Array(userVM.currentUser.shoppingCart))
                 
-                InvoiceFields(checkedShipping: $checkedShipping, total: calcTotalAmount())
+                InvoiceFields(checkedShipping: $checkedShipping, total: checkedShipping ? productVM.calcTotal(products: Array(userVM.currentUser.shoppingCart)) : productVM.calcTotal(products: Array(userVM.currentUser.shoppingCart)) + 4.99)
                 
-                ShippingInformation(fullName: $fullName, address: $address, postcode: $postcode, city: $city)
+                ShippingInformationFields(fullName: $fullName, address: $address, postcode: $postcode, city: $city)
             
                 ShippingOptions(checkedShipping: $checkedShipping)
                 
@@ -36,16 +34,14 @@ struct Checkout: View {
             
                 PurchaseButton(
                     showPopover: $showPopover,
-                    total: checkedShipping ? calcTotalAmount() : calcTotalAmount() + 4.99,
+                    total: checkedShipping ? productVM.calcTotal(products: Array(userVM.currentUser.shoppingCart)) : productVM.calcTotal(products: Array(userVM.currentUser.shoppingCart)) + 4.99,
                     fullName: fullName,
                     address: address,
                     postcode: postcode,
                     city: city,
                     shipping: checkedShipping ? "Standard" : "Express",
                     payment: checkedPayment ? "PayPal" : "Credit Card",
-                    purchaseDate: Date(),
-                    user: userVM.currentUser,
-                    products: Array(userVM.currentUser.shoppingCart)
+                    purchaseDate: Date()
                 )
                 
             }
@@ -60,14 +56,6 @@ struct Checkout: View {
                 }
             }
         }
-    }
-    
-    func calcTotalAmount() -> Float {
-        var total: Float = 0.0
-        for product in userVM.currentUser.shoppingCart {
-            total += product.price
-        }
-        return total
     }
 }
 

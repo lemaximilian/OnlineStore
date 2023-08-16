@@ -15,10 +15,10 @@ struct ContentView: View {
         case .notLoggedIn:
             Login()
                 .transition(.move(edge: .trailing))
-        case .loggedInCustomer:
+        case .loggedInAsCustomer:
             TabController()
                 .transition(.move(edge: .trailing))
-        case .loggedInSeller:
+        case .loggedInAsSeller:
             Management()
                 .transition(.move(edge: .trailing))
         }

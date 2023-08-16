@@ -22,6 +22,15 @@ extension Ticket {
     @NSManaged public var isProcessed: Bool
     @NSManaged public var user: User?
 
+    public var unwrappedSubject: String {
+        get { subject ?? "Unknown Subject" }
+        set { subject = newValue }
+    }
+    
+    public var unwrappedRequest: String {
+        get { request ?? "Unknown Request" }
+        set { request = newValue }
+    }
 }
 
 extension Ticket : Identifiable {

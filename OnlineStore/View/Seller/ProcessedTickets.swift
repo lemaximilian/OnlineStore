@@ -16,20 +16,7 @@ struct ProcessedTickets: View {
         if processedTickets.isEmpty {
             Text("There are no processed requests")
         } else {
-            List {
-                ForEach(processedTickets) { ticket in
-                    NavigationLink(destination: TicketItem(ticket: ticket)) {
-                        Text(ticket.subject ?? "Unknown Subject")
-                    }
-                }
-                .onDelete(perform: { indexSet in
-                    ticketVM.removeTicket(at: indexSet, tickets: processedTickets, viewContext: viewContext)
-                })
-            }
-            .listStyle(.plain)
-            .toolbar {
-                EditButton()
-            }
+            TicketsList(tickets: processedTickets)
         }
     }
 }

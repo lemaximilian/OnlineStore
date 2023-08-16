@@ -13,15 +13,16 @@ struct LoginButton: View {
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
     @EnvironmentObject var notificationVM: NotificationViewModel
-    @Binding var username: String
-    @Binding var password: String
+    @State var showAlert = false
+    var username: String
+    var password: String
     @Binding var startAnimation: Bool
     
     var body: some View {
         Button("Login") {
             login()
         }
-        .alert(Text("Missing Inputs"), isPresented: $appVM.alertShown, actions: {
+        .alert(Text("Missing Inputs"), isPresented: $showAlert, actions: {
             Button("Confirm") { }
         }, message: {
             Text("Please enter an username or password.")
@@ -38,7 +39,7 @@ struct LoginButton: View {
         ) {
         case .fieldsInvalid:
             appVM.invalidFields = false
-            appVM.alertShown.toggle()
+            showAlert = true
         case .credentialsInvalid:
             appVM.invalidFields = true
             startAnimation = true
@@ -54,12 +55,12 @@ struct LoginButton: View {
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
             notificationVM.subscribeNotifications()
-            appVM.loginCustomer()
+            appVM.loginAsCustomer()
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
-            appVM.loginSeller()
+            appVM.loginAsSeller()
         }
     }
 }

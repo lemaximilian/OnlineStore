@@ -39,57 +39,11 @@ struct ProductReviews: View {
         }
         
         if currentProduct.review.isEmpty {
-            Text("There are currently no reviews.")
+            Text("There are currently no reviews")
                 .padding()
         } else {
-            ForEach(Array(currentProduct.review)) { review in
-                ReviewItem(review: review)
-            }
+            ReviewList(product: currentProduct)
         }
-        
-        
-//        HStack {
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Spacer()
-//        }
-//        .padding()
-//
-//        Text(text)
-//            .padding(.horizontal)
-//
-//        Divider()
-//
-//        HStack {
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star")
-//            Image(systemName: "star")
-//            Spacer()
-//        }
-//        .padding()
-//
-//        Text(text)
-//            .padding(.horizontal)
-//
-//        Divider()
-//
-//        HStack {
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.fill")
-//            Image(systemName: "star.leadinghalf.filled")
-//            Spacer()
-//        }
-//        .padding()
-//
-//        Text(text)
-//            .padding(.horizontal)
     }
 }
 

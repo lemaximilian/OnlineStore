@@ -11,11 +11,6 @@ import SwiftUI
 class AppViewModel: ObservableObject {
     @Published private var appData = AppData()
     
-    var alertShown: Bool {
-        get { appData.alertShown }
-        set { appData.alertShown = newValue }
-    }
-    
     var invalidFields: Bool {
         get { appData.invalidFields }
         set { appData.invalidFields = newValue }
@@ -31,8 +26,8 @@ class AppViewModel: ObservableObject {
         set { appData.isLoggedIn = newValue }
     }
     
-    var numberFormatter: NumberFormatter {
-        appData.numberFormatter
+    var numberFormatterDecimal: NumberFormatter {
+        appData.numberFormatterDecimal
     }
     
     var numberFormatterInt: NumberFormatter {
@@ -49,19 +44,19 @@ class AppViewModel: ObservableObject {
         }
     }
     
-    func loginCustomer() {
+    func loginAsCustomer() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
-                self.appData.loginCustomer()
+                self.appData.loginAsCustomer()
                 self.appData.stopLoading()
             }
         }
     }
     
-    func loginSeller() {
+    func loginAsSeller() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
-                self.appData.loginSeller()
+                self.appData.loginAsSeller()
                 self.appData.stopLoading()
             }
         }

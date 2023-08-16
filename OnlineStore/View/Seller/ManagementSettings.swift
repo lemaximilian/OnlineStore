@@ -14,6 +14,7 @@ struct ManagementSettings: View {
         LogoutButton()
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+        // modifiers for loading overlay
             .disabled(appVM.isLoading)
             .blur(radius: appVM.isLoading ? 3 : 0)
             .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Logging out"))

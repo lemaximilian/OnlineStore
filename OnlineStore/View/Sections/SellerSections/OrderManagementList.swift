@@ -1,5 +1,5 @@
 //
-//  UserOrderList.swift
+//  OrderManagementList.swift
 //  OnlineStore
 //
 //  Created by Maximilian Le on 14.08.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserOrderList: View {
+struct OrderManagementList: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var orderVM: OrderViewModel
@@ -21,7 +21,7 @@ struct UserOrderList: View {
             List {
                 ForEach(Array(user.orders)) { order in
                     NavigationLink(destination: EditOrder(order: order)) {
-                        Text("Order from \(appVM.dateFormatter.string(from: order.purchaseDate ?? Date()))")
+                        Text("Order from \(appVM.dateFormatter.string(from: order.unwrappedPurchaseDate))")
                     }
                 }
                 .onDelete(perform: { indexSet in

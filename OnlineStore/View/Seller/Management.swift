@@ -9,15 +9,13 @@ import SwiftUI
 
 struct Management: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order)]) private var categories: FetchedResults<Category>
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    @EnvironmentObject var appVM: AppViewModel
     
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                    NavigationLink(destination: NewProduct(selectedCategory: categories.first ?? Category())) {
-                        RectangleButton(title: "New Product", image: "plus")
+                    NavigationLink(destination: AddProduct(selectedCategory: categories.first ?? Category())) {
+                        RectangleButton(title: "Add Product", image: "plus")
                     }
                     .buttonStyle(.plain)
                     
@@ -36,8 +34,8 @@ struct Management: View {
                     }
                     .buttonStyle(.plain)
                     
-                    NavigationLink(destination: NewCategory()) {
-                        RectangleButton(title: "New Category", image: "bag.fill.badge.plus")
+                    NavigationLink(destination: AddCategory()) {
+                        RectangleButton(title: "Add Category", image: "bag.fill.badge.plus")
                     }
                     .buttonStyle(.plain)
                     

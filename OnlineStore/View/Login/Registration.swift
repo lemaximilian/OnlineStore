@@ -23,19 +23,15 @@ struct Registration: View {
             // User Input
             RegistrationFields(mail: $mail, username: $username, birthDate: $birthDate, password: $password, isSeller: $isSeller)
         
-            // Button to Register
-            RegisterButton(mail: $mail, username: $username, birthDate: $birthDate, password: $password, isSeller: $isSeller)
-            
-            // Button to delete all Users (testing purposes)
-            DeleteUsersButton()
+            RegisterButton(mail: mail, username: username, birthDate: birthDate, password: password, isSeller: isSeller)
             
             Spacer()
             
-            // Button to Login View
             ExistingAccountButton()
             
         }
         .navigationBarBackButtonHidden(true)
+        // modifiers for loading overlay
         .disabled(appVM.isLoading)
         .blur(radius: appVM.isLoading ? 3 : 0)
         .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))

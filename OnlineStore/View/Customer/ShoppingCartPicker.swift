@@ -25,7 +25,7 @@ struct ShoppingCartPicker: View {
                 if selectedSegment == "shoppingcart" {
                     ShoppingCartView()
                 } else {
-                    OrderView()
+                    Orders()
                 }
             }
             

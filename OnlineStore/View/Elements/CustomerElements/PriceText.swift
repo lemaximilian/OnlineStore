@@ -14,7 +14,7 @@ struct PriceText: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("Price: \(appVM.numberFormatter.string(from: NSNumber(value: price)) ?? "")€")
+            Text("Price: \(appVM.numberFormatterDecimal.string(from: NSNumber(value: price)) ?? "")€")
                 .font(.title2)
                 .bold()
         }

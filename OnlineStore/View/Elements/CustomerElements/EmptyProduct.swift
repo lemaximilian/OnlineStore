@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyProducts: View {
+struct EmptyProduct: View {
     var body: some View {
         Text("There are currently no products")
     }

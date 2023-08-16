@@ -10,6 +10,7 @@ import SwiftUI
 struct CartItemsAndCounter: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var productVM: ProductViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -17,7 +18,7 @@ struct CartItemsAndCounter: View {
             
             ShoppingCartItemList()
             
-            ShoppingCartTotal(totalString: appVM.numberFormatter.string(from: NSNumber(value: calcTotalAmount())) ?? "")
+            ShoppingCartTotal(totalString: appVM.numberFormatterDecimal.string(from: NSNumber(value: productVM.calcTotal(products: Array(userVM.currentUser.shoppingCart)))) ?? "")
         }
         .navigationTitle("Shopping Cart")
         .toolbar {
@@ -25,14 +26,6 @@ struct CartItemsAndCounter: View {
                 CheckoutButton()
             }
         }
-    }
-    
-    func calcTotalAmount() -> Float {
-        var total: Float = 0.0
-        for product in userVM.currentUser.shoppingCart {
-            total += product.price
-        }
-        return total
     }
 }
 

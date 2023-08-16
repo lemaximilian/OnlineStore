@@ -11,20 +11,8 @@ import CloudKit
 
 class PersistenceController {
     static let shared = PersistenceController()
+    // public CKContainer for push notifications
     let database = CKContainer(identifier: "iCloud.THKoeln.Store").publicCloudDatabase
-
-    static var preview: PersistenceController = {
-            let result = PersistenceController(inMemory: true)
-            let viewContext = result.container.viewContext
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-            return result
-        }()
-    
     let container: NSPersistentCloudKitContainer
     
     init(inMemory: Bool = false) {
@@ -33,6 +21,8 @@ class PersistenceController {
         let publicStoreDescription = NSPersistentStoreDescription(url: publicStoreLocation)
         publicStoreDescription.configuration = "Public"
         publicStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.THKoeln.Store")
+        
+        // public NSPersistentCloudKitContainer
         publicStoreDescription.cloudKitContainerOptions?.databaseScope = .public
         
         container.persistentStoreDescriptions = [
@@ -55,32 +45,18 @@ class PersistenceController {
         }
         
         container.viewContext.automaticallyMergesChangesFromParent = true
+        // avoid duplicate records
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
     }
     
     func save(viewContext: NSManagedObjectContext) {
-            do {
-                try viewContext.save()
-                print("Data has been saved successfully.")
-            } catch {
-                // Handle errors in database
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        do {
+            try viewContext.save()
+            print("Data has been saved successfully.")
+        } catch {
+            // Handle errors in database
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-    
-    // Category
-    func addCategory(
-        title: String,
-        image: Data?,
-        viewContext: NSManagedObjectContext
-    ) {
-        let category = Category(context: viewContext)
-        category.id = UUID()
-        category.title = title
-        category.image = image
-        let products: [Product] = []
-        category.product = Set(products)
-        save(viewContext: viewContext)
     }
 }

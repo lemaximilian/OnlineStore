@@ -12,6 +12,7 @@ struct EditUserButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
+    @State var showAlert = false
     @State var activeAlert: ActiveAlert = .first
     @Binding var mail: String
     @Binding var username: String
@@ -23,7 +24,7 @@ struct EditUserButton: View {
         Button("Edit User") {
             editUser()
         }
-        .alert(isPresented: $appVM.alertShown) {
+        .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .first: return missingAlert
             case .second: return editAlert
@@ -53,7 +54,7 @@ struct EditUserButton: View {
     func editUser() {
         if mail.isEmpty || username.isEmpty || password.isEmpty {
             activeAlert = .first
-            appVM.alertShown = true
+            showAlert = true
         } else {
             userVM.editUser(
                 user: user,
@@ -64,7 +65,7 @@ struct EditUserButton: View {
                 viewContext: viewContext
             )
             activeAlert = .second
-            appVM.alertShown = true
+            showAlert = true
         }
     }
 }

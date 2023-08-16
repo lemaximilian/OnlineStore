@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NoAccountButton: View {
+struct CreateAccountButton: View {
     var body: some View {
         HStack {
             Spacer()

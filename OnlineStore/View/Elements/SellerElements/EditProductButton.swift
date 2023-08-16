@@ -12,6 +12,7 @@ struct EditProductButton: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    @State var showAlert = false
     @State var activeAlert: ActiveAlert = .first
     @Binding var title: String
     @Binding var price: Float
@@ -25,7 +26,7 @@ struct EditProductButton: View {
         Button("Edit Product") {
             editProduct()
         }
-        .alert(isPresented: $appVM.alertShown) {
+        .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .first: return missingAlert
             case .second: return editAlert
@@ -55,7 +56,7 @@ struct EditProductButton: View {
     func editProduct() {
         if title.isEmpty || description.isEmpty || highlightArray.isEmpty || imageArray.isEmpty {
             activeAlert = .first
-            appVM.alertShown = true
+            showAlert = true
         } else {
             productVM.editProduct(
                 product: product,
@@ -68,7 +69,7 @@ struct EditProductButton: View {
                 viewContext: viewContext
             )
             activeAlert = .second
-            appVM.alertShown = true
+            showAlert = true
         }
     }
 }

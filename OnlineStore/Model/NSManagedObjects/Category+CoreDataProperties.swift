@@ -22,6 +22,10 @@ extension Category {
     @NSManaged public var title: String?
     @NSManaged public var product: Set<Product>
 
+    public var unwrappedTitle: String {
+        get { title ?? "Unknown Title" }
+        set { title = newValue}
+    }
 }
 
 // MARK: Generated accessors for product

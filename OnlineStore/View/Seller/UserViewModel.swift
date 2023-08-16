@@ -99,6 +99,11 @@ class UserViewModel: ObservableObject {
         save(viewContext: viewContext)
     }
     
+    func addProductToShoppingCart(product: Product, viewContext: NSManagedObjectContext) {
+        currentUser.shoppingCart.insert(product)
+        save(viewContext: viewContext)
+    }
+    
     func save(viewContext: NSManagedObjectContext) {
         users.removeAll()
         

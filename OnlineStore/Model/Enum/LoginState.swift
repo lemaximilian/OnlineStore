@@ -9,6 +9,6 @@ import Foundation
 
 enum LoginState {
     case notLoggedIn
-    case loggedInCustomer
-    case loggedInSeller
+    case loggedInAsCustomer
+    case loggedInAsSeller
 }

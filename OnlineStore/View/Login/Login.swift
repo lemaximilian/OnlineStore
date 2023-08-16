@@ -24,14 +24,15 @@ struct Login: View {
                 LoginFields(username: $username, password: $password, startAnimation: $startAnimation)
                 
                 // Button to Login
-                LoginButton(username: $username, password: $password, startAnimation: $startAnimation)
+                LoginButton(username: username, password: password, startAnimation: $startAnimation)
                 
                 Spacer()
                 
                 // Button to Registration View
-                NoAccountButton()
+                CreateAccountButton()
                 
             }
+            // modifiers for loading overlay
             .disabled(appVM.isLoading)
             .blur(radius: appVM.isLoading ? 3 : 0)
             .overlay(LoadingOverlay(isLoading: $appVM.isLoading, title: "Loading"))

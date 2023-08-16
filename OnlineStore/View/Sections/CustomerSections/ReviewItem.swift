@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ReviewItem: View {
     @EnvironmentObject var appVM: AppViewModel
+    @EnvironmentObject var reviewVM: ReviewViewModel
     let maximumRating = 5
     let review: Review
     
     var body: some View {
         HStack {
             ForEach(1..<maximumRating + 1, id: \.self) { number in
-                starImage(for: number)
+                reviewVM.getStarImage(for: number, rating: Int(review.rating))
             }
             Spacer()
         }
@@ -23,10 +24,10 @@ struct ReviewItem: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Text(review.title ?? "Unknown Title")
+                Text(review.unwrappedTitle)
                     .bold()
                 Spacer()
-                Text(appVM.dateFormatter.string(from: review.creationDate ?? Date()))
+                Text(appVM.dateFormatter.string(from: review.unwrappedCreationDate))
             }
             .padding(.horizontal)
             
@@ -35,21 +36,13 @@ struct ReviewItem: View {
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
             
-            Text(review.comment ?? "Unknown Comment")
+            Text(review.unwrappedComment)
                 .padding()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         
         Divider()
         
-    }
-    
-    func starImage(for number: Int) -> Image {
-        if number > review.rating {
-            return Image(systemName: "star")
-        } else {
-            return Image(systemName: "star.fill")
-        }
     }
 }
 

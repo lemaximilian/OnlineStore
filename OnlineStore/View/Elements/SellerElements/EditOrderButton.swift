@@ -11,7 +11,7 @@ struct EditOrderButton: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var orderVM: OrderViewModel
-    @State var alertShown = false
+    @State var showAlert = false
     @State var activeAlert: ActiveAlert = .first
     @Binding var fullName: String
     @Binding var address: String
@@ -23,7 +23,7 @@ struct EditOrderButton: View {
         Button("Edit Order") {
             editOrder()
         }
-        .alert(isPresented: $alertShown) {
+        .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .first: return missingAlert
             case .second: return editAlert
@@ -53,7 +53,7 @@ struct EditOrderButton: View {
     func editOrder() {
         if fullName.isEmpty || address.isEmpty || city.isEmpty {
             activeAlert = .first
-            alertShown = true
+            showAlert = true
         } else {
             orderVM.editOrder(
                 order: order,
@@ -64,7 +64,7 @@ struct EditOrderButton: View {
                 viewContext: viewContext
             )
             activeAlert = .second
-            alertShown = true
+            showAlert = true
         }
     }
 }

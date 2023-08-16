@@ -87,6 +87,16 @@ class OrderViewModel: ObservableObject {
         save(viewContext: viewContext)
     }
     
+    func getShippingBool(order: Order) -> Binding<Bool> {
+        var shippingBool = true
+        if order.shipping == "Standard" {
+            shippingBool = true
+        } else {
+            shippingBool = false
+        }
+        return Binding(get: { shippingBool }, set: { shippingBool = $0 })
+    }
+    
     func save(viewContext: NSManagedObjectContext) {
         orders.removeAll()
         

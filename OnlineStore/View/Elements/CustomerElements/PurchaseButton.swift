@@ -22,8 +22,6 @@ struct PurchaseButton: View {
     var shipping: String
     var payment: String
     var purchaseDate: Date
-    var user: User
-    var products: [Product]
     
     var body: some View {
         Button {
@@ -81,8 +79,8 @@ struct PurchaseButton: View {
                 shipping: shipping,
                 payment: payment,
                 purchaseDate: purchaseDate,
-                user: user,
-                products: products,
+                user: userVM.currentUser,
+                products: Array(userVM.currentUser.shoppingCart),
                 viewContext: viewContext
             )
             activeAlert = .second

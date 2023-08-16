@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CheckoutItemList: View {
     @Environment(\.managedObjectContext) var viewContext
-    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    var products: [Product]
     
     var body: some View {
-        ForEach(Array(userVM.currentUser.shoppingCart)) { product in
+        ForEach(products) { product in
             CheckoutItem(product: product, image: productVM.fetchProductImages(product: product, viewContext: viewContext).first)
             Divider()
                 .padding(.horizontal)

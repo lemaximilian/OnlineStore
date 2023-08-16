@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Categories: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
-    
     var body: some View {
         CategoryGrid()
             .navigationTitle("Categories")

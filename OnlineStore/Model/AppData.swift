@@ -9,9 +9,6 @@ import Foundation
 import SwiftUI
 
 struct AppData {
-    // Missing Input(s) Alert
-    var alertShown = false
-    
     // Wrong User Credentials
     var invalidFields = false
     
@@ -21,7 +18,7 @@ struct AppData {
     // Current Login State
     var isLoggedIn: LoginState = .notLoggedIn
     
-    let numberFormatter: NumberFormatter = {
+    let numberFormatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -55,12 +52,12 @@ struct AppData {
         isLoading = false
     }
     
-    mutating func loginCustomer() {
-        isLoggedIn = .loggedInCustomer
+    mutating func loginAsCustomer() {
+        isLoggedIn = .loggedInAsCustomer
     }
     
-    mutating func loginSeller() {
-        isLoggedIn = .loggedInSeller
+    mutating func loginAsSeller() {
+        isLoggedIn = .loggedInAsSeller
     }
     
     mutating func logout() {

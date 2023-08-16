@@ -12,17 +12,19 @@ struct RegisterButton: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
-    @Binding var mail: String
-    @Binding var username: String
-    @Binding var birthDate: Date
-    @Binding var password: String
-    @Binding var isSeller: Bool
+    @EnvironmentObject var notificationVM: NotificationViewModel
+    @State var showAlert = false
+    var mail: String
+    var username: String
+    var birthDate: Date
+    var password: String
+    var isSeller: Bool
     
     var body: some View {
         Button("Register") {
             register()
         }
-        .alert(isPresented: $appVM.alertShown) {
+        .alert(isPresented: $showAlert) {
             MissingAlert
         }
         .buttonStyle(.borderedProminent)
@@ -47,19 +49,20 @@ struct RegisterButton: View {
             isSeller: isSeller,
             viewContext: viewContext
         ) {
-        case .fieldsInvalid: appVM.alertShown.toggle()
+        case .fieldsInvalid: showAlert = true
         case .credentialsInvalid:
             print("Oops, something went wrong.")
         case .successCustomer:
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
-            appVM.loginCustomer()
+            notificationVM.subscribeNotifications()
+            appVM.loginAsCustomer()
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
-            appVM.loginSeller()
+            appVM.loginAsSeller()
         }
     }
 }

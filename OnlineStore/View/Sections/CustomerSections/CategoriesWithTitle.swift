@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoriesWithTitle: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
     var title: String
     
     var body: some View {

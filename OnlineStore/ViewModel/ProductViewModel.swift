@@ -93,6 +93,15 @@ class ProductViewModel: ObservableObject {
         save(viewContext: viewContext)
     }
     
+    // calculate total for array of products
+    func calcTotal(products: [Product]) -> Float {
+        var total: Float = 0.0
+        for product in products {
+            total += product.price
+        }
+        return total
+    }
+    
     func fetchProductImages(
         product: Product,
         viewContext: NSManagedObjectContext
@@ -121,6 +130,16 @@ class ProductViewModel: ObservableObject {
             print("Could not unarchive Highlight Array. \(error.localizedDescription)")
         }
         return highlightArray
+    }
+    
+    func getHighlightsBinding(product: Product, viewContext: NSManagedObjectContext) -> Binding<[String]> {
+        var highlightArray = fetchProductHighlights(product: product, viewContext: viewContext)
+        return Binding(get: { highlightArray }, set: { highlightArray = $0 })
+    }
+    
+    func getImagesBinding(product: Product, viewContext: NSManagedObjectContext) -> Binding<[Data?]> {
+        var imageArray: [Data?] = fetchProductImages(product: product, viewContext: viewContext)
+        return Binding(get: { imageArray }, set: { imageArray = $0 })
     }
     
     func save(viewContext: NSManagedObjectContext) {

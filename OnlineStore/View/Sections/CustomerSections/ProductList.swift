@@ -14,7 +14,7 @@ struct ProductList: View {
     
     var body: some View {
         if productVM.products.isEmpty {
-            EmptyProducts()
+            EmptyProduct()
         } else {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {

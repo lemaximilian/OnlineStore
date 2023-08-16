@@ -12,7 +12,7 @@ struct CategoryPage: View {
     
     var body: some View {
         ProductGrid(category: category)
-            .navigationTitle(category.title ?? "Unknown Category")
+            .navigationTitle(category.unwrappedTitle)
             .padding()
     }
 }

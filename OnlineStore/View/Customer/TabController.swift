@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabController: View {
-    @EnvironmentObject var placeholderVM: PlaceholderViewModel
     @State private var tab: Tab = .home
     
     var body: some View {

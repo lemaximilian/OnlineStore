@@ -14,12 +14,6 @@ struct CheckoutItem: View {
     
     var body: some View {
         ZStack {
-//            RoundedRectangle(cornerRadius: 20)
-//                .fill()
-//                .foregroundColor(.white)
-//                .aspectRatio(4/1, contentMode: .fit)
-//                .shadow(radius: 5)
-            
             HStack {
                 if let image,
                    let uiImage = UIImage(data: image) {
@@ -39,7 +33,7 @@ struct CheckoutItem: View {
                     }
                     
                     HStack {
-                        Text("Price: \(appVM.numberFormatter.string(from: NSNumber(value: product.price)) ?? "")€")
+                        Text("Price: \(appVM.numberFormatterDecimal.string(from: NSNumber(value: product.price)) ?? "")€")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         Spacer()

@@ -54,6 +54,11 @@ extension Order {
         get { payment ?? "Unknown Payment" }
         set { payment = newValue }
     }
+    
+    public var unwrappedPurchaseDate: Date {
+        get { purchaseDate ?? Date() }
+        set { purchaseDate = newValue }
+    }
 }
 
 // MARK: Generated accessors for products
