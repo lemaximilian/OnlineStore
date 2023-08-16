@@ -2,16 +2,20 @@
 //  ShoppingCartContent.swift
 //  OnlineStore
 //
-//  Created by Maximilian Le on 04.08.23.
+//  Created by Maximilian Le on 31.05.23.
 //
 
 import SwiftUI
 
 struct ShoppingCartContent: View {
-    @Binding var selectedSegment: String
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
-        
+        if userVM.currentUser.shoppingCart.isEmpty {
+            EmptyCart()
+        } else {
+            CartItemsAndCounter()
+        }
     }
 }
 

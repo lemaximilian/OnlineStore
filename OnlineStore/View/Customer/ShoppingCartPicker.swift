@@ -21,13 +21,7 @@ struct ShoppingCartPicker: View {
             
             Spacer()
             
-            HStack {
-                if selectedSegment == "shoppingcart" {
-                    ShoppingCartView()
-                } else {
-                    Orders()
-                }
-            }
+            ShoppingCartOrderSelector(selectedSegment: $selectedSegment)
             
             Spacer()
         }
