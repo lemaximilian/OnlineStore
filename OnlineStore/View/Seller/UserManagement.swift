@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct UserManagement: View {
-    @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "isSeller == %@", "0")) private var users: FetchedResults<User>
     
     var body: some View {

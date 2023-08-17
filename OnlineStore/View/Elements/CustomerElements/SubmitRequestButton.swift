@@ -55,7 +55,7 @@ struct SubmitRequestButton: View {
     var submitAlert: Alert {
         Alert(
             title: Text("Request submitted!"),
-            message: Text("We will try to answer your request as soon as possible."),
+            message: Text("We will try to process your request as soon as possible"),
             dismissButton: .cancel(Text("OK")) {
                 self.presentationMode.wrappedValue.dismiss()
             }

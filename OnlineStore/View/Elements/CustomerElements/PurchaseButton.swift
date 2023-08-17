@@ -56,7 +56,7 @@ struct PurchaseButton: View {
     var purchasedAlert: Alert {
         Alert(
             title: Text("Purchased successfully!"),
-            message: Text("Your purchase was successful and your order was placed."),
+            message: Text("Your purchase was successful and your order was placed"),
             dismissButton: .cancel(Text("OK")) {
                 userVM.currentUser.shoppingCart.removeAll()
                 userVM.save(viewContext: viewContext)
