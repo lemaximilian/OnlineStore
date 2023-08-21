@@ -13,11 +13,13 @@ struct AddReviewStars: View {
     var maximumRating: Int
     
     var body: some View {
-        ForEach(1..<maximumRating + 1, id: \.self) { number in
-            reviewVM.getStarImage(for: number, rating: rating)
-                .onTapGesture {
-                    rating = number
-                }
+        HStack {
+            ForEach(1..<maximumRating + 1, id: \.self) { number in
+                reviewVM.getStarImage(for: number, rating: rating)
+                    .onTapGesture {
+                        rating = number
+                    }
+            }
         }
     }
 }
