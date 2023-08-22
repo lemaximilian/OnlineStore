@@ -280,7 +280,7 @@
 		89E971772A4C1C6B00699258 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		89E971792A4D7E0F00699258 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		89E9717B2A4D976800699258 /* LoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
-		89E971822A4DDB9E00699258 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ../View/Seller/UserViewModel.swift; sourceTree = "<group>"; };
+		89E971822A4DDB9E00699258 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		89E971842A516F5200699258 /* RegistrationFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFields.swift; sourceTree = "<group>"; };
 		89E971892A517A7800699258 /* LoginFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFields.swift; sourceTree = "<group>"; };
 		89E971942A51E78C00699258 /* TopProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopProducts.swift; sourceTree = "<group>"; };
