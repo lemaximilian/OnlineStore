@@ -12,6 +12,7 @@ struct RegisterButton: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     @EnvironmentObject var notificationVM: NotificationViewModel
     @State var showAlert = false
     var mail: String
@@ -56,12 +57,14 @@ struct RegisterButton: View {
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
+            categoryVM.fetchCategories(viewContext: viewContext)
             notificationVM.subscribeNotifications()
             appVM.loginAsCustomer()
         case .successSeller:
             appVM.invalidFields = false
             appVM.loading()
             productVM.fetchProducts(viewContext: viewContext)
+            categoryVM.fetchCategories(viewContext: viewContext)
             appVM.loginAsSeller()
         }
     }

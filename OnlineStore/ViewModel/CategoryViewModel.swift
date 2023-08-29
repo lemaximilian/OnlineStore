@@ -14,6 +14,7 @@ class CategoryViewModel: ObservableObject {
     
     func fetchCategories(viewContext: NSManagedObjectContext) {
         let request = NSFetchRequest<Category>(entityName: "Category")
+        request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\Category.order))]
         
         do {
             categories = try viewContext.fetch(request)

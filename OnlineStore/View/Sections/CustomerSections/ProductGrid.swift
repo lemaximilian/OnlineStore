@@ -15,7 +15,7 @@ struct ProductGrid: View {
     
     var body: some View {
         if category.product.isEmpty {
-            EmptyCategory()
+            Text("There are no products in this category")
         } else {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {

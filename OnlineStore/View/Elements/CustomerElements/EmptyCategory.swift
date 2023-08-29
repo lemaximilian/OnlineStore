@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmptyCategory: View {
     var body: some View {
-        Text("There are no products in this category")
+        Text("There are currently no categories")
     }
 }
 
